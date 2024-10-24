@@ -3,8 +3,13 @@
     src: url('../fonts/PlaywriteGBS-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'OceanWide';
+    src: url('../fonts/Oceanwide-Semibold.otf') format('opentype');
+}
+
 * {
-    font-family: 'PlayWrite', Arial, Helvetica, sans-serif;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -14,7 +19,8 @@ body {
 
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0 100px;
     align-items: center;
 
     background-color: #171a2f;
@@ -47,7 +53,8 @@ header {
     color: #fff;
     background: transparent;
     border: 1px solid transparent;
-    font-family: 'PlayWrite', Arial, Helvetica, sans-serif;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .btn::before {
