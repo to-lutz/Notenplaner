@@ -27,6 +27,7 @@ header {
     align-items: center;
     width: 80px;
     height: 80px;
+    border-radius: 15px;
 
     background: rgb(46,113,182);
     background: linear-gradient(288deg, rgba(46,113,182,1) 0%, rgba(9,121,78,1) 100%);
