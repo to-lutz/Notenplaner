@@ -6,6 +6,7 @@ var favicon = require('serve-favicon');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
+var loginAPIRouter = require('./routes/api/loginAPI');
 
 var app = express();
 
@@ -18,5 +19,6 @@ app.use(favicon(path.join(__dirname, '../client/images/favicon', 'favicon.ico'))
 
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/api/login', loginAPIRouter);
 
 module.exports = app;
