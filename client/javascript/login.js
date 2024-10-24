@@ -23,7 +23,11 @@ document.querySelector("#sign-in").addEventListener("click", (e) => {
     }
 
     if (name.value.length != 0 && password.value.length != 0) {
-        loginRequest();
+        if (loginRequest()) {
+
+        } else {
+            
+        }
     }
 });
 
