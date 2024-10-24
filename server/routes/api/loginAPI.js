@@ -10,7 +10,8 @@ router.post('/', function(req, res, next) {
         message: 'Eingeloggt als NAME',
         id: -1,
         name: 'NAME',
-        date: new Date()
+        date: new Date(),
+        sessionID: -1
     });
     */
     res.status(403).json({
@@ -18,7 +19,8 @@ router.post('/', function(req, res, next) {
         message: 'Falscher Benutzername oder Passwort.',
         id: -1,
         name: '',
-        date: new Date()
+        date: new Date(),
+        sessionID: -1,
     });
 });
 

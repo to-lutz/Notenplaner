@@ -7,7 +7,9 @@ document.querySelector("#togglePassword").addEventListener("click", (e) => {
     }
 });
 
-document.querySelector("#sign-in").addEventListener("click", (e) => {
+let lastJsonData = undefined;
+
+document.querySelector("#sign-in").addEventListener("click", async (e) => {
     let name = document.querySelector("#name");
     let password = document.querySelector("#password");
 
@@ -23,26 +25,25 @@ document.querySelector("#sign-in").addEventListener("click", (e) => {
     }
 
     if (name.value.length != 0 && password.value.length != 0) {
-        if (loginRequest()) {
 
-        } else {
-            
+        const url = "/api/login";
+        try {
+            const response = await fetch(url, {method: "POST"});
+    
+            response.json().then((data) => {
+                
+                if (data.status == "Authorized") {
+                    // Session ID lokal speichern, ...
+                } else {
+                    document.querySelector(".form-error").innerHTML = data.message;
+                }
+            })
+        } catch (error) {
+            console.error(error.message);
+            return {
+                status: "Error",
+                message: "Ein Fehler ist aufgetreten!"
+            };
         }
     }
 });
-
-async function loginRequest(userName, password) {
-    const url = "/api/login";
-    try {
-        const response = await fetch(url, {method: "POST"});
-
-        if (!response.ok) {
-            return false;
-        } else {
-            return true;
-        }
-    } catch (error) {
-        console.error(error.message);
-        return false;
-    }
-}

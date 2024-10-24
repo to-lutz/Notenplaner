@@ -127,3 +127,8 @@ body {
     z-index: 100;
     cursor: pointer;
 }
+
+.form-error {
+    color: red;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+}
