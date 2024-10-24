@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'PlayWrite';
+    src: url('../fonts/PlaywriteGBS-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OceanWide';
+    src: url('../fonts/Oceanwide-Semibold.otf') format('opentype');
+}
+
+* {
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    align-items: center;
+
+    background-color: #171a2f;
+    height: 100px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+
+    background: rgb(46,113,182);
+    background: linear-gradient(288deg, rgba(46,113,182,1) 0%, rgba(9,121,78,1) 100%);
+}
+
+.fa-paper-plane {
+    color: #fff !important;
+}
+
+.btn {
+    position: relative;
+    padding: 15px 25px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    background: transparent;
+    border: 1px solid transparent;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 35px;
+    padding: 2px; /* control the border thickness */
+    background: linear-gradient(288deg, rgba(46,113,182,1) 0%, rgba(9,121,78,1) 100%);
+    mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.title-wrapper {
+    height: 750px;
+    background-color: #151625;
+}
