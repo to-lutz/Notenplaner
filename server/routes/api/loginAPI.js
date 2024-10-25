@@ -12,8 +12,6 @@ router.post('/', function (req, res, next) {
         user: process.env.DB_USER,
         password: process.env.DB_PASS
     });
-    
-    console.log(req.body);
 
     connection.connect();
 
@@ -21,11 +19,12 @@ router.post('/', function (req, res, next) {
         if (err) throw err;
         if (rows.length != 0) {
 
+            console.log(rows);
             res.status(200).json({
                 status: 'Authorized',
-                message: 'Eingeloggt als NAME',
-                id: -1,
-                name: 'NAME',
+                message: 'Eingeloggt als ' + rows[0].username,
+                id: rows[0].id,
+                name: rows[0].username,
                 date: new Date(),
                 sessionID: -1
             });
