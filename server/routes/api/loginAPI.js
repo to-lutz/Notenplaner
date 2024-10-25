@@ -1,9 +1,27 @@
 var express = require('express');
 var router = express.Router();
-var path = require('path');
+var mysql = require('mysql');
+var dotenv = require('dotenv').config();
+
 
 /* POST login authorization. */
-router.post('/', function(req, res, next) {
+router.post('/', function (req, res, next) {
+
+    var connection = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASS
+    });
+    
+    connection.connect();
+    
+    connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+        if (err) throw err;
+        console.log('The solution is: ', rows[0].solution);
+    });
+    
+    connection.end();
+
     /*
     res.status(200).json({
         status: 'Authorized',
