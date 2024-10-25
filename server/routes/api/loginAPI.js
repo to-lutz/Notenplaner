@@ -13,33 +13,38 @@ router.post('/', function (req, res, next) {
         password: process.env.DB_PASS
     });
     
+    console.log(req.body);
+
     connection.connect();
-    
-    connection.query('SELECT 1 + 1 AS solution', function (err, rows, fields) {
+
+    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'"', function (err, rows, fields) {
         if (err) throw err;
-        console.log('The solution is: ', rows[0].solution);
+        if (rows.length != 0) {
+
+            res.status(200).json({
+                status: 'Authorized',
+                message: 'Eingeloggt als NAME',
+                id: -1,
+                name: 'NAME',
+                date: new Date(),
+                sessionID: -1
+            });
+
+        } else {
+
+            res.status(403).json({
+                status: 'Unauthorized',
+                message: 'Falscher Benutzername oder Passwort.',
+                id: -1,
+                name: '',
+                date: new Date(),
+                sessionID: -1,
+            });
+
+        }
     });
     
     connection.end();
-
-    /*
-    res.status(200).json({
-        status: 'Authorized',
-        message: 'Eingeloggt als NAME',
-        id: -1,
-        name: 'NAME',
-        date: new Date(),
-        sessionID: -1
-    });
-    */
-    res.status(403).json({
-        status: 'Unauthorized',
-        message: 'Falscher Benutzername oder Passwort.',
-        id: -1,
-        name: '',
-        date: new Date(),
-        sessionID: -1,
-    });
 });
 
 module.exports = router;
