@@ -28,7 +28,12 @@ document.querySelector("#sign-in").addEventListener("click", async (e) => {
 
         const url = "/api/login";
         try {
-            const response = await fetch(url, {method: "POST"});
+            const response = await fetch(url, {method: "POST", body: JSON.stringify(
+                {
+                    username: name.value,
+                    password: password.value
+                }
+            )});
     
             response.json().then((data) => {
                 
