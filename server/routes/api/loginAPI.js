@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
-var dotenv = require('dotenv').config();
+require('dotenv').config();
 
 
 /* POST login authorization. */
