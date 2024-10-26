@@ -10,6 +10,13 @@ function getCookie(name) {
     return match ? match[1] : null;
 }
 
+document.querySelector(".form-wrapper").onkeydown = function (evt) {
+    if (evt.key == "Enter") {
+        evt.preventDefault();
+        signIn();
+    }
+}
+
 document.querySelector("#togglePassword").addEventListener("click", (e) => {
     let input = document.querySelector("#password");
     if (input.type == "password") {
@@ -19,9 +26,9 @@ document.querySelector("#togglePassword").addEventListener("click", (e) => {
     }
 });
 
-let lastJsonData = undefined;
+document.querySelector("#sign-in").addEventListener("click", signIn);
 
-document.querySelector("#sign-in").addEventListener("click", async (e) => {
+async function signIn() {
     let name = document.querySelector("#name");
     let password = document.querySelector("#password");
 
@@ -73,4 +80,4 @@ document.querySelector("#sign-in").addEventListener("click", async (e) => {
             };
         }
     }
-});
+}
