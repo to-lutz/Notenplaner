@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
+var crypto = require('crypto');
 require('dotenv').config();
 
 
@@ -15,7 +16,8 @@ router.post('/', function (req, res, next) {
 
     connection.connect();
 
-    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'" AND password="' + req.body.password + '"', function (err, rows, fields) {
+    let hashedPassword = crypto.createHash('md5').update(req.body.password).digest('hex');
+    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'" AND password="' + hashedPassword + '"', function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
             let sessID = new Date().getTime() * rows[0].id;
