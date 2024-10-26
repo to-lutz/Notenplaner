@@ -41,3 +41,9 @@ function getCookie(name) {
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
     return match ? match[1] : null;
 }
+
+document.querySelector("#sign-out").addEventListener("click", (e) => {
+    document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    window.location.href = "/login";
+    // TODO: Remove SessionID API Call
+});
