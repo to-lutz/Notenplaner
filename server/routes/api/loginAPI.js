@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
 
     connection.connect();
 
-    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'"', function (err, rows, fields) {
+    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'" AND password="' + req.body.password + '"', function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
 
