@@ -43,13 +43,30 @@ header {
     color: #fff !important;
 }
 
+.header-right-side {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-account-text {
+    display: inline-block;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 25px;
+    margin: 0 50px;
+}
+
+#account-name {
+    text-decoration: underline;
+}
+
 .btn {
     position: relative;
     padding: 15px 25px;
     margin: 5px;
     display: inline-block;
     font-size: 25px;
-    font-family: Arial, Helvetica, sans-serif;
     color: #fff;
     background: transparent;
     border: 1px solid transparent;
