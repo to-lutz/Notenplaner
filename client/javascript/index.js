@@ -2,6 +2,9 @@
 let sessionID = getCookie("np_session_id");
 if (sessionID == null || sessionID.length == 0) {
     window.location.href = "/login";
+} else {
+    // Get database data
+    
 }
 
 function getCookie(name) {
