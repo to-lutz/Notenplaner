@@ -45,5 +45,25 @@ function getCookie(name) {
 document.querySelector("#sign-out").addEventListener("click", (e) => {
     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     window.location.href = "/login";
-    // TODO: Remove SessionID API Call
+
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/sessionidremove";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(
+                    {
+                        sessionid: sessionID
+                    }
+                ),
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
 });
