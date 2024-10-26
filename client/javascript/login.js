@@ -48,6 +48,7 @@ document.querySelector("#sign-in").addEventListener("click", async (e) => {
                     let now = new Date();
                     now.setTime(now.getTime() + (365 * 86400 * 1000)); // 365 days * 86400 seconds * 1000 milliseconds
                     document.cookie = "np_session_id=" + data.sessionID + ";expires=" + now.toUTCString();
+                    window.location.href = "../";
                 } else {
                     document.querySelector(".form-error").innerHTML = data.message;
                 }
