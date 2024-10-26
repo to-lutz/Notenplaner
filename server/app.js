@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var loginAPIRouter = require('./routes/api/loginAPI');
 var sessionIDAPIRouter = require('./routes/api/sessionIdAPI');
+var sessionIDRemoveAPIRouter = require('./routes/api/sessionIdRemoveAPI');
 
 var app = express();
 
@@ -25,5 +26,6 @@ app.use('/login', loginRouter);
 // API Routes
 app.use('/api/login', loginAPIRouter);
 app.use('/api/sessionid', sessionIDAPIRouter);
+app.use('/api/sessionidremove', sessionIDRemoveAPIRouter);
 
 module.exports = app;
