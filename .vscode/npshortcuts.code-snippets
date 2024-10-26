@@ -16,7 +16,6 @@
 	// 	"description": "Log output to console"
 	// }
 	"defaultfont": {
-		"scope": "javascript,typescript",
 		"prefix": "npfont",
 		"body": [
 			"'OceanWide', Arial, Helvetica, sans-serif;"
