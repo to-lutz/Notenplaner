@@ -72,6 +72,7 @@ header {
     border: 1px solid transparent;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     text-align: center;
+    cursor: pointer;
 }
 
 .btn::before {
