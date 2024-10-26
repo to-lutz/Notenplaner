@@ -10,6 +10,8 @@ function getCookie(name) {
     return match ? match[1] : null;
 }
 
+document.querySelector(".sign-in-text").addEventListener("click", (e) => {window.location.href = "/login"});
+
 document.querySelector(".form-wrapper").onkeydown = function (evt) {
     if (evt.key == "Enter") {
         evt.preventDefault();
