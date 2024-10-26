@@ -23,11 +23,20 @@ router.post('/', function (req, res, next) {
     connection.query('INSERT INTO users.user(`username`, `email`, `password`) VALUES ("' + username + '", "' + email + '", "' + passwordHash + '")', function (err, rows, fields) {
         if (err) {
             if (err.code == 'ER_DUP_ENTRY') {
-                res.status(400).json({
-                    status: 'Not Created',
-                    message: 'Username oder E-Mail existiert bereits!',
-                    date: new Date(),
-                });
+                console.log(err);
+                if (err.sqlMessage.includes("username_UNIQUE")) {
+                    res.status(400).json({
+                        status: 'Not Created',
+                        message: 'Benutzername existiert bereits!',
+                        date: new Date(),
+                    });
+                } else if (err.sqlMessage.includes("email_UNIQUE")) {
+                    res.status(400).json({
+                        status: 'Not Created',
+                        message: 'E-Mail existiert bereits!',
+                        date: new Date(),
+                    });
+                }
             }
             connection.end();
             return;
