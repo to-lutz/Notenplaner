@@ -19,7 +19,6 @@ router.post('/', function (req, res, next) {
         if (err) throw err;
         if (rows.length != 0) {
 
-            console.log(rows);
             res.status(200).json({
                 status: 'Authorized',
                 message: 'Eingeloggt als ' + rows[0].username,
