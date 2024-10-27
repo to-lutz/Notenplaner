@@ -71,8 +71,12 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
 });
 
 // Notenpunkte Durchschnittskreis
-let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
-durchschnittKreis.value = 14;
-durchschnittKreis.textFormat = function(value, max) {
-    return value + ' NP';
-};
+async function load_np_average() {
+    let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
+    durchschnittKreis.value = 14;
+    durchschnittKreis.textFormat = function (value, max) {
+        return value + ' NP';
+    };
+}
+
+load_np_average();
