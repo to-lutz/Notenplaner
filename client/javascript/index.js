@@ -122,11 +122,28 @@ let fetchHighestSubjects = async () => {
                 }
             ),
         });
-        response.json().then((data) => {
+        response.json().then(async (data) => {
             for (let i = 0; i < Math.min(data.noten.length, 3); i++) {
-                let elem = document.querySelector("#top-grade-item" + (i+1));
-                elem.innerHTML = "Fach: " + data.noten[i].np + " NP";
-                elem.style.display = "list-item";
+
+                let response = await fetch("/api/getfach", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(
+                        {
+                            userid: userID,
+                            fachid: data.noten[i].fachid
+                        }
+                    ),
+                });
+
+                response.json().then((data2) => {
+                    let elem = document.querySelector("#top-grade-item" + (i + 1));
+                    elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
+                    elem.style.display = "list-item";
+                    elem.style.color = "#" + data2.farbe;
+                })
             }
         })
     } catch (error) {
