@@ -7,11 +7,14 @@ var favicon = require('serve-favicon');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
+
 var loginAPIRouter = require('./routes/api/loginAPI');
 var registerAPIRouter = require('./routes/api/registerAPI');
 var sessionIDAPIRouter = require('./routes/api/sessionIdAPI');
 var sessionIDRemoveAPIRouter = require('./routes/api/sessionIdRemoveAPI');
 var addFachAPIRouter = require('./routes/api/addFachAPI');
+
+var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 
 var app = express();
 
@@ -33,5 +36,8 @@ app.use('/api/register', registerAPIRouter);
 app.use('/api/sessionid', sessionIDAPIRouter);
 app.use('/api/sessionidremove', sessionIDRemoveAPIRouter);
 app.use('/api/addfach', addFachAPIRouter);
+
+// Noten API Routes
+app.use('/api/noten/durchschnitt', notendurchschnittRouter);
 
 module.exports = app;
