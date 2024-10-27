@@ -93,4 +93,7 @@ header {
 .title-wrapper {
     height: 750px;
     background-color: #151625;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
