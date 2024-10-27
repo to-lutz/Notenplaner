@@ -1,3 +1,5 @@
+import CircleProgress from './circle_progress.js';
+
 // Logged in Check
 let sessionID = getCookie("np_session_id");
 if (sessionID == null || sessionID.length == 0) {
@@ -67,3 +69,10 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
     }
     apiCall();
 });
+
+// Notenpunkte Durchschnittskreis
+let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
+durchschnittKreis.value = 14;
+durchschnittKreis.textFormat = function(value, max) {
+    return value + ' NP';
+};

@@ -10,7 +10,6 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-circle-progress/dist/circle-progress.min.js" type="module"></script>
 </head>
 
 <body>
@@ -31,9 +30,11 @@
                 </div>
             </header>
         </div>
-        <div class="title-wrapper"></div>
+        <div class="title-wrapper">
+            <circle-progress max="15" class="np_durchschnitt_kreis" animation-duration="1500"></circle-progress>
+        </div>
     </div>
-    <script src="javascript/index.js"></script>
+    <script src="javascript/index.js" type="module"></script>
 </body>
 
 </html>
