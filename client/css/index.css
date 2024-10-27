@@ -97,3 +97,8 @@ header {
     justify-content: center;
     align-items: center;
 }
+
+.np_durchschnitt_kreis::part(base) {
+    width: 350px;
+    height: 350px;
+}
