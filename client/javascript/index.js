@@ -26,6 +26,8 @@ if (sessionID == null || sessionID.length == 0) {
                     document.querySelectorAll("#account-name").forEach((e) => {
                         e.innerHTML = data.name;
                     })
+                    userID = data.id;
+                    fetchDurchschnitt();
                 } else {
                     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                     window.location.href = "/login";
@@ -43,6 +45,8 @@ function getCookie(name) {
     var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
     return match ? match[1] : null;
 }
+
+let userID = undefined;
 
 document.querySelector("#sign-out").addEventListener("click", (e) => {
     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -79,4 +83,26 @@ async function load_np_average(val) {
     };
 }
 
-load_np_average(15);
+let fetchDurchschnitt = async () => {
+    console.log("fetch");
+    // Get database data
+    const url = "/api/noten/durchschnitt";
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID
+                }
+            ),
+        });
+        response.json().then((data) => {
+            load_np_average(data.average);
+        })
+    } catch (error) {
+        console.error(error.message);
+    }
+}
