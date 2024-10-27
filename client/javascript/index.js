@@ -28,6 +28,7 @@ if (sessionID == null || sessionID.length == 0) {
                     })
                     userID = data.id;
                     fetchDurchschnitt();
+                    fetchHighestSubjects();
                 } else {
                     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                     window.location.href = "/login";
@@ -84,7 +85,6 @@ async function load_np_average(val) {
 }
 
 let fetchDurchschnitt = async () => {
-    console.log("fetch");
     // Get database data
     const url = "/api/noten/durchschnitt";
     try {
@@ -101,6 +101,31 @@ let fetchDurchschnitt = async () => {
         });
         response.json().then((data) => {
             load_np_average(data.average);
+        })
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+let fetchHighestSubjects = async () => {
+    // Get database data
+    const url = "/api/noten/topsubjects";
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID
+                }
+            ),
+        });
+        response.json().then((data) => {
+            for (let i = 0; i < 3; i++) {
+                document.querySelector("#top-grade-item" + (i+1)).innerHTML = "Fach: " + data.noten[i].np + " NP";
+            }
         })
     } catch (error) {
         console.error(error.message);
