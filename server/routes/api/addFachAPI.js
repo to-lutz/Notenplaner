@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     connection.connect();
 
 
-    connection.query('INSERT INTO notenplaner.faecher(`userid`, `fachname`) VALUES ("' + req.body.userid + '", "' + req.body.fachname + '")', function (err, rows, fields) {
+    connection.query('INSERT INTO notenplaner.faecher(`userid`, `fachname`, `farbe`) VALUES ("' + req.body.userid + '", "' + req.body.fachname + '", "' + req.body.farbe + '")', function (err, rows, fields) {
         if (err) {
             throw err;
         }
@@ -26,6 +26,7 @@ router.post('/', function (req, res, next) {
             status: 'Created',
             id: req.body.userid,
             fachname: req.body.fachname,
+            farbe: req.body.farbe,
             date: new Date(),
         });
 
