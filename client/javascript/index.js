@@ -123,8 +123,10 @@ let fetchHighestSubjects = async () => {
             ),
         });
         response.json().then((data) => {
-            for (let i = 0; i < 3; i++) {
-                document.querySelector("#top-grade-item" + (i+1)).innerHTML = "Fach: " + data.noten[i].np + " NP";
+            for (let i = 0; i < Math.min(data.noten.length, 3); i++) {
+                let elem = document.querySelector("#top-grade-item" + (i+1));
+                elem.innerHTML = "Fach: " + data.noten[i].np + " NP";
+                elem.style.display = "list-item";
             }
         })
     } catch (error) {
