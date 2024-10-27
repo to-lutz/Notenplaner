@@ -11,6 +11,7 @@ var loginAPIRouter = require('./routes/api/loginAPI');
 var registerAPIRouter = require('./routes/api/registerAPI');
 var sessionIDAPIRouter = require('./routes/api/sessionIdAPI');
 var sessionIDRemoveAPIRouter = require('./routes/api/sessionIdRemoveAPI');
+var addFachAPIRouter = require('./routes/api/addFachAPI');
 
 var app = express();
 
@@ -31,5 +32,6 @@ app.use('/api/login', loginAPIRouter);
 app.use('/api/register', registerAPIRouter);
 app.use('/api/sessionid', sessionIDAPIRouter);
 app.use('/api/sessionidremove', sessionIDRemoveAPIRouter);
+app.use('/api/addfach', addFachAPIRouter);
 
 module.exports = app;
