@@ -35,8 +35,8 @@ header {
     height: 80px;
     border-radius: 15px;
 
-    background: rgb(46,113,182);
-    background: linear-gradient(288deg, rgba(46,113,182,1) 0%, rgba(9,121,78,1) 100%);
+    background: rgb(46, 113, 182);
+    background: linear-gradient(288deg, rgba(46, 113, 182, 1) 0%, rgba(9, 121, 78, 1) 100%);
 }
 
 .fa-paper-plane {
@@ -80,11 +80,12 @@ header {
     position: absolute;
     inset: 0;
     border-radius: 35px;
-    padding: 2px; /* control the border thickness */
-    background: linear-gradient(288deg, rgba(46,113,182,1) 0%, rgba(9,121,78,1) 100%);
-    mask: 
-    linear-gradient(#fff 0 0) content-box, 
-    linear-gradient(#fff 0 0);
+    padding: 2px;
+    /* control the border thickness */
+    background: linear-gradient(288deg, rgba(46, 113, 182, 1) 0%, rgba(9, 121, 78, 1) 100%);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
     mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
@@ -101,6 +102,7 @@ header {
 .notendurchschnitt-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -111,12 +113,14 @@ header {
 
 .np_durchschnitt_kreis::part(text) {
     color: #fff;
-    font-family: 'OceanWide', Arial, Helvetica, sans-serif;;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    ;
 }
 
 .top-grades-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -129,4 +133,10 @@ header {
 
 .top-grades-list-item {
     display: none;
+}
+
+.title-wrapper-header-text {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    font-size: 32px;
 }
