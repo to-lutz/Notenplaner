@@ -102,3 +102,8 @@ header {
     width: 350px;
     height: 350px;
 }
+
+.np_durchschnitt_kreis::part(text) {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;;
+}
