@@ -100,7 +100,7 @@ let fetchDurchschnitt = async () => {
             ),
         });
         response.json().then((data) => {
-            load_np_average(data.average);
+            load_np_average(Math.round(data.average * 10) / 10);
         })
     } catch (error) {
         console.error(error.message);
