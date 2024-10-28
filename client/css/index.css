@@ -43,10 +43,16 @@ header {
     color: #fff !important;
 }
 
-.header-right-side {
+.header-right-side, .header-left-side {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 35%;
+}
+
+.header-left-side {
+    width: 25%;
+    justify-content: flex-start;
 }
 
 .header-account-text {
@@ -72,6 +78,7 @@ header {
     width: 140px;
     border-radius: 25px;
     text-indent: 10px;
+    margin-left: 35px;
 }
 
 .select-semester-selected {
