@@ -121,6 +121,16 @@ let fetchDurchschnitt = async () => {
 let fetchHighestSubjects = async () => {
     // Get database data
     const url = "/api/noten/topsubjects";
+    let currentSemester = document.querySelector(".select-semester-selected").textContent;
+    if (currentSemester.includes("1.1")) {
+        currentSemester = 1;
+    } else if (currentSemester.includes("1.2")) {
+        currentSemester = 2;
+    } else if (currentSemester.includes("2.1")) {
+        currentSemester = 3;
+    } else if (currentSemester.includes("2.2")) {
+        currentSemester = 4;
+    } 
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -129,7 +139,8 @@ let fetchHighestSubjects = async () => {
             },
             body: JSON.stringify(
                 {
-                    userid: userID
+                    userid: userID,
+                    semester: currentSemester
                 }
             ),
         });
