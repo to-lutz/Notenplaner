@@ -163,7 +163,7 @@ selected.addEventListener('click', () => {
 
 items.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
-        selected.textContent = event.target.textContent;
+        selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
         items.style.display = 'none';
     }
 });
@@ -175,7 +175,9 @@ document.addEventListener('click', (event) => {
     }
     if (items.style.display === 'block') {
         selected.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('.arrow').innerHTML = "<";
     } else {
         selected.style.borderColor = "#494949";
+        document.querySelector('.arrow').innerHTML = ">";
     }
 });

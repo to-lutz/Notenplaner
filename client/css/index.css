@@ -88,6 +88,9 @@ header {
     border: 1px solid #494949;
     border-radius: 10px;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .semester-select-items {
@@ -120,6 +123,14 @@ header {
 .semester-select-items div:last-child {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.arrow {
+    transform-origin: center;
+    width: fit-content;
+    height: fit-content;
+    transform: rotate(90deg);
+    margin-top: -12.5px;
 }
 
 .btn {
