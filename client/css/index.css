@@ -132,7 +132,12 @@ header {
 }
 
 .top-grades-list-item {
-    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.top-grades-fade-in {
+    opacity: 1;
 }
 
 .title-wrapper-header-text {

@@ -139,10 +139,12 @@ let fetchHighestSubjects = async () => {
                 });
 
                 response.json().then((data2) => {
-                    let elem = document.querySelector("#top-grade-item" + (i + 1));
-                    elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
-                    elem.style.display = "list-item";
-                    elem.style.color = "#" + data2.farbe;
+                    setTimeout(() => {
+                        let elem = document.querySelector("#top-grade-item" + (i + 1));
+                        elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
+                        elem.style.color = "#" + data2.farbe;
+                        elem.classList.add("top-grades-fade-in");
+                    }, i * (2000/3));
                 })
             }
         })
