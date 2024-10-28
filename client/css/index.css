@@ -47,11 +47,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 35%;
+}
+
+.header-right-side {
+    justify-content: flex-end;
 }
 
 .header-left-side {
-    width: 25%;
     justify-content: flex-start;
 }
 
@@ -65,6 +67,7 @@ header {
 
 #account-name {
     text-decoration: underline;
+    margin-right: 35px;
 }
 
 .header-select-semester {
