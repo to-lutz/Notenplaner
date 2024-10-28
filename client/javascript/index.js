@@ -187,6 +187,8 @@ items.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
         items.style.display = 'none';
+        fetchDurchschnitt();
+        fetchHighestSubjects();
     }
 });
 
