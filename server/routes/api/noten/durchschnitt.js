@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
 
     connection.connect();
 
-    connection.query('SELECT * FROM notenplaner.noten WHERE userid="' + req.body.userid + '"', function (err, rows, fields) {
+    connection.query('SELECT * FROM notenplaner.noten WHERE userid="' + req.body.userid + '" AND halbjahr=' + req.body.semester, function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
             let id = rows[0].userid;
