@@ -140,8 +140,58 @@ header {
     opacity: 1;
 }
 
-.title-wrapper-header-text {
+.title-wrapper-header-text, .notification-wrapper-header-text {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     font-size: 32px;
+}
+
+.notification-wrapper {
+    background-color: #171a2f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 750px;
+}
+
+.center-notification-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.notification-wrapper-header-text {
+    text-decoration: underline;
+}
+
+.notification-wrapper-subheader-text {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    font-size: 26px;
+}
+
+.next-exam-wrapper, .new-grades-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.next-exams-list, .new-grades-list {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    list-style-type: disc;
+    padding-left: 0;
+    margin-top: 0;
+}
+
+.next-exams-list-item, .new-grades-list-item {
+    margin-bottom: 10px;
+}
+
+.no-next-exam, .no-new-grade {
+    font-style: italic !important;
+    color: #5c5c5c !important;
+    list-style-type: none;
 }
