@@ -61,6 +61,60 @@ header {
     text-decoration: underline;
 }
 
+.header-select-semester {
+    position: relative;
+    margin-top: 15px;
+    margin-right: 35px;
+    background-color: transparent;
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    height: 55px;
+    width: 140px;
+    border-radius: 25px;
+    text-indent: 10px;
+}
+
+.select-semester-selected {
+    background-color: transparent;
+    color: white;
+    padding: 10px;
+    border: 1px solid #494949;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.semester-select-items {
+    margin-top: 5px;
+    position: absolute;
+    background-color: #292929;
+    border: 1px solid #494949;
+    border-radius: 10px;
+    width: 140px;
+    z-index: 99;
+    display: none;
+}
+
+.semester-select-items div {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.semester-select-items div:hover {
+    background-color: #494949;
+    color: white;
+}
+
+.semester-select-items div:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.semester-select-items div:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 .btn {
     position: relative;
     padding: 15px 25px;
@@ -114,7 +168,6 @@ header {
 .np_durchschnitt_kreis::part(text) {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
-    ;
 }
 
 .top-grades-wrapper {

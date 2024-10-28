@@ -144,7 +144,7 @@ let fetchHighestSubjects = async () => {
                         elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
                         elem.style.color = "#" + data2.farbe;
                         elem.classList.add("top-grades-fade-in");
-                    }, i * (2000/3));
+                    }, i * (2000 / 3));
                 })
             }
         })
@@ -152,3 +152,30 @@ let fetchHighestSubjects = async () => {
         console.error(error.message);
     }
 }
+
+// Select Menu
+const selected = document.querySelector('.select-semester-selected');
+const items = document.querySelector('.semester-select-items');
+
+selected.addEventListener('click', () => {
+    items.style.display = items.style.display === 'block' ? 'none' : 'block';
+});
+
+items.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        selected.textContent = event.target.textContent;
+        items.style.display = 'none';
+    }
+});
+
+
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.header-select-semester')) {
+        items.style.display = 'none';
+    }
+    if (items.style.display === 'block') {
+        selected.style.borderColor = "rgb(46, 113, 182)";
+    } else {
+        selected.style.borderColor = "#494949";
+    }
+});
