@@ -23,7 +23,8 @@ router.post('/', function (req, res, next) {
             for (let row of rows) {
                 noten.push({
                     fach: row.fachid,
-                    np: row.notenpunkte
+                    np: row.notenpunkte,
+                    added: row.timestamp
                 })
             }
 
