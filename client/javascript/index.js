@@ -169,6 +169,11 @@ let fetchHighestSubjects = async () => {
                     }, i * (2000 / 3));
                 })
             }
+            if (data.noten.length < 3) {
+                for (let i = 3; i > data.noten.length; i--) {
+                    document.querySelector("#top-grade-item" + i).style.display = "none";
+                }
+            }
         })
     } catch (error) {
         console.error(error.message);
