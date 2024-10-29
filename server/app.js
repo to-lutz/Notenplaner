@@ -7,6 +7,7 @@ var favicon = require('serve-favicon');
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
+var settingsRouter = require('./routes/settings');
 
 var loginAPIRouter = require('./routes/api/loginAPI');
 var registerAPIRouter = require('./routes/api/registerAPI');
@@ -32,6 +33,7 @@ app.use(favicon(path.join(__dirname, '../client/images/favicon', 'favicon.ico'))
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/settings', settingsRouter);
 
 // API Routes
 app.use('/api/login', loginAPIRouter);
