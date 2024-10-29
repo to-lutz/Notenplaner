@@ -77,14 +77,23 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
 
 // Notenpunkte Durchschnittskreis
 async function load_np_average(val) {
-    let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
-    durchschnittKreis.value = val;
-    durchschnittKreis.textFormat = function (value, max) {
-        return value + ' NP';
-    };
+    if (val < 0 || val > 15) {
+        let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
+        durchschnittKreis.value = 0;
+        durchschnittKreis.textFormat = function (value, max) {
+            return '? NP';
+        };
+    } else {
+        let durchschnittKreis = document.querySelector(".np_durchschnitt_kreis");
+        durchschnittKreis.value = val;
+        durchschnittKreis.textFormat = function (value, max) {
+            return value + ' NP';
+        };
+    }
 }
 
 let fetchDurchschnitt = async () => {
+    load_np_average(-1);
     // Get database data
     const url = "/api/noten/durchschnitt";
     let currentSemester = document.querySelector(".select-semester-selected").textContent;
