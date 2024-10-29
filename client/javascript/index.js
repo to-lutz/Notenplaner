@@ -29,6 +29,7 @@ if (sessionID == null || sessionID.length == 0) {
                     userID = data.id;
                     fetchDurchschnitt();
                     fetchHighestSubjects();
+                    fetchGrades();
                 } else {
                     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                     window.location.href = "/login";
@@ -205,6 +206,82 @@ let fetchHighestSubjects = async () => {
     }
 }
 
+let fetchGrades = async () => {
+    // Get database data
+    const url = "/api/noten/getnoten";
+    let currentSemester = document.querySelector(".select-semester-selected").textContent;
+    if (currentSemester.includes("1.1")) {
+        currentSemester = 1;
+    } else if (currentSemester.includes("1.2")) {
+        currentSemester = 2;
+    } else if (currentSemester.includes("2.1")) {
+        currentSemester = 3;
+    } else if (currentSemester.includes("2.2")) {
+        currentSemester = 4;
+    }
+    try {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                    semester: currentSemester
+                }
+            ),
+        });
+
+        let list = document.querySelector(".new-grades-list");
+        list.innerHTML = "";
+        if (response.status == "403") {
+            let elem = document.createElement("li");
+            elem.classList.add("new-grades-list-item");
+            elem.classList.add("no-new-grade");
+            elem.id = "new-grade-item1";
+            elem.textContent = "Keine neuen Noten";
+            list.appendChild(elem);
+            return;
+        }
+
+        response.json().then(async (data) => {
+            let noten = data.noten;
+            noten.sort((a, b) => new Date(a.added) - new Date(b.added));
+            noten.reverse();
+
+            for (let i = 0; i < Math.min(noten.length, 6); i++) {
+                let elem = document.createElement("li");
+                elem.classList.add("new-grades-list-item");
+                elem.id = "new-grade-item" + (i+1);
+
+                let notenElem = noten[i];
+                let date = new Date(notenElem.added);
+
+                let response = await fetch("/api/getfach", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(
+                        {
+                            userid: userID,
+                            fachid: noten[i].fach
+                        }
+                    ),
+                });
+            
+                response.json().then((data) => {
+                    elem.textContent = date.getDate() + "." + date.getMonth() + "." + date.getFullYear() + " | " + data.name + ": " + notenElem.np + " NP";
+                    elem.style.color = "#" + data.farbe;
+                    list.appendChild(elem);
+                });
+            }
+        })
+    } catch (error) {
+        console.error(error.message);
+    }
+}
 // Select Menu
 const selected = document.querySelector('.select-semester-selected');
 const items = document.querySelector('.semester-select-items');
@@ -219,6 +296,7 @@ items.addEventListener('click', (event) => {
         items.style.display = 'none';
         fetchDurchschnitt();
         fetchHighestSubjects();
+        fetchGrades();
     }
 });
 
