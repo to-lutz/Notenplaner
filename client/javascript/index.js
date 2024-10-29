@@ -96,7 +96,7 @@ let fetchDurchschnitt = async () => {
         currentSemester = 3;
     } else if (currentSemester.includes("2.2")) {
         currentSemester = 4;
-    } 
+    }
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -119,6 +119,13 @@ let fetchDurchschnitt = async () => {
 }
 
 let fetchHighestSubjects = async () => {
+
+    document.querySelectorAll(".top-grades-list-item").forEach((e) => {
+        e.classList.remove("top-grades-fade-in");
+        e.style.transition = "none";
+        e.style.opacity = "0";
+    });
+
     // Get database data
     const url = "/api/noten/topsubjects";
     let currentSemester = document.querySelector(".select-semester-selected").textContent;
@@ -130,7 +137,7 @@ let fetchHighestSubjects = async () => {
         currentSemester = 3;
     } else if (currentSemester.includes("2.2")) {
         currentSemester = 4;
-    } 
+    }
     try {
         const response = await fetch(url, {
             method: "POST",
@@ -145,6 +152,15 @@ let fetchHighestSubjects = async () => {
             ),
         });
         response.json().then(async (data) => {
+            if (data.status === "Unknown") {
+                let elem1 = document.querySelector("#top-grade-item1");
+                elem1.textContent = "Keine Noten verfügbar";
+                elem1.classList.add("no-top-subjects");
+                elem1.style.opacity = "1";
+                document.querySelector(".top-grades-list").style.padding = "0";
+                return;
+            }
+            document.querySelector(".top-grades-list").style.paddingLeft = "40px";
             for (let i = 0; i < Math.min(data.noten.length, 3); i++) {
 
                 let response = await fetch("/api/getfach", {
@@ -165,14 +181,14 @@ let fetchHighestSubjects = async () => {
                         let elem = document.querySelector("#top-grade-item" + (i + 1));
                         elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
                         elem.style.color = "#" + data2.farbe;
+
+                        // Animation
+                        elem.style.transition = "opacity 1s ease-in-out";
+                        elem.style.opacity = "1";
                         elem.classList.add("top-grades-fade-in");
+                        elem.classList.remove("no-top-subjects");
                     }, i * (2000 / 3));
                 })
-            }
-            if (data.noten.length < 3) {
-                for (let i = 3; i > data.noten.length; i--) {
-                    document.querySelector("#top-grade-item" + i).style.display = "none";
-                }
             }
         })
     } catch (error) {

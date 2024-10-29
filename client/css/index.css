@@ -264,8 +264,12 @@ header {
     margin-bottom: 10px;
 }
 
-.no-next-exam, .no-new-grade {
+.no-next-exam, .no-new-grade, .no-top-subjects {
     font-style: italic !important;
     color: #5c5c5c !important;
     list-style-type: none;
+}
+
+.no-top-subjects {
+    text-indent: none;
 }
