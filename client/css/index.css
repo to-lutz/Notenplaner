@@ -136,6 +136,20 @@ header {
     margin-top: -12.5px;
 }
 
+.pagebtn {
+    padding: 15px 25px 15px 0px;
+    margin: 5px;
+    display: inline-block;
+    font-size: 25px;
+    color: #fff;
+    background: transparent;
+    border: 1px solid transparent;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .btn {
     position: relative;
     padding: 15px 25px;

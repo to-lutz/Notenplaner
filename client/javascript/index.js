@@ -313,3 +313,7 @@ document.addEventListener('click', (event) => {
         document.querySelector('.arrow').innerHTML = ">";
     }
 });
+
+document.querySelector("#settings-page-btn").addEventListener('click', () => {
+    window.location.href = "/settings";
+});
