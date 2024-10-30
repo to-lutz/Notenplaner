@@ -57,14 +57,6 @@ header {
     justify-content: flex-start;
 }
 
-.header-account-text {
-    display: inline-block;
-    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
-    color: #fff;
-    font-size: 25px;
-    margin: 0 50px;
-}
-
 #account-name {
     text-decoration: underline;
     margin-right: 35px;
@@ -180,8 +172,24 @@ header {
     pointer-events: none;
 }
 
+.title-hello-wrapper {
+    height: 100px;
+    background-color: #151625;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.title-account-text {
+    display: inline-block;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 35px;
+    margin: 0 50px;
+}
+
 .title-wrapper {
-    height: 750px;
+    height: 550px;
     background-color: #151625;
     display: flex;
     justify-content: space-evenly;

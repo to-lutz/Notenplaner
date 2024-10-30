@@ -26,6 +26,7 @@ if (sessionID == null || sessionID.length == 0) {
                     document.querySelectorAll("#account-name").forEach((e) => {
                         e.innerHTML = data.name;
                     })
+                    document.querySelector("#title-account-text-time").innerHTML = (new Date().getHours() >= 12) ? "Abend" : "Morgen";
                     userID = data.id;
                     fetchDurchschnitt();
                     fetchHighestSubjects();
