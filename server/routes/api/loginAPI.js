@@ -23,6 +23,20 @@ router.post('/', function (req, res, next) {
             let sessID = new Date().getTime() * rows[0].id;
             let username = rows[0].username;
             let id = rows[0].id;
+            
+            if (rows[0].active != "1") {
+                res.status(403).json({
+                    status: 'Unauthorized',
+                    message: 'Account noch nicht verifiziert',
+                    id: -1,
+                    name: '',
+                    date: new Date(),
+                    sessionID: -1,
+                });
+                connection.end();
+                return;
+            }
+
             connection.query("INSERT INTO `users`.`sessionids`(`sessionid`,`username`,`userid`) VALUES(" + sessID +",'" + rows[0].username + "'," + rows[0].id + ");", (err, rows, fields) => {
                 if (err) throw err;
                 
