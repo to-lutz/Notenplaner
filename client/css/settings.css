@@ -109,7 +109,7 @@ header {
     overflow-y: hidden;
     background-color: #151625;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: flex-start;
 }
 
@@ -117,9 +117,60 @@ header {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     font-size: 32px;
+    text-decoration: underline;
+    text-align: center;
 }
 
-.setting-wrapper {
+.settings-wrapper {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+}
+
+.subjects-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+    flex-direction: column;
+}
+
+.subject-wrap-header {
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    color: #cacaca;
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+.subject-item-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #5c5c5c;
+    border-radius: 35px;
+    padding: 25px;
+    width: max(250px, 15vw);
+    margin: 5px 0;
+}
+
+.subject-item-name {
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    color: #fff;
+    font-size: 16px;
+}
+
+.subject-item-management {
+    width: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa-pen {
+    color: #e0a400 !important; 
+    cursor: pointer;
+}
+
+.fa-trash-can {
+    color: #aa0000 !important; 
+    cursor: pointer;
 }
