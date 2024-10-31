@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
+var apiKeyMiddleware = require('./middleware/apiKeyMiddleware');
 
 var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
@@ -37,6 +38,7 @@ app.use('/register', registerRouter);
 app.use('/settings', settingsRouter);
 
 // API Routes
+app.use('/api', apiKeyMiddleware);
 app.use('/api/login', loginAPIRouter);
 app.use('/api/register', registerAPIRouter);
 app.use('/api/sessionid', sessionIDAPIRouter);
