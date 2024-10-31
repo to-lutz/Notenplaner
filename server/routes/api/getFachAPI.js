@@ -25,6 +25,7 @@ router.post('/', function (req, res, next) {
                 name: rows[0].fachname,
                 by: rows[0].userid,
                 farbe: rows[0].farbe,
+                isProfilfach: rows[0].isProfilfach,
                 date: new Date(),
             });
 

@@ -25,6 +25,7 @@ router.post('/', function (req, res, next) {
                     id: row.id,
                     name: row.fachname,
                     farbe: row.farbe,
+                    isProfilfach: row.isProfilfach,
                 })
             }
             res.status(200).json({
