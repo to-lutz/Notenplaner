@@ -10,7 +10,7 @@ if (sessionID == null || sessionID.length == 0) {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {
@@ -62,7 +62,7 @@ async function fetchSubjects() {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {
@@ -111,7 +111,7 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {

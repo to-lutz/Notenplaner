@@ -52,7 +52,7 @@ async function signIn() {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {

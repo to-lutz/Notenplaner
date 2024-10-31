@@ -12,7 +12,7 @@ if (sessionID == null || sessionID.length == 0) {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {
@@ -62,7 +62,7 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                 },
                 body: JSON.stringify(
                     {
@@ -112,7 +112,7 @@ let fetchDurchschnitt = async () => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
             },
             body: JSON.stringify(
                 {
@@ -153,7 +153,7 @@ let fetchHighestSubjects = async () => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
             },
             body: JSON.stringify(
                 {
@@ -177,7 +177,7 @@ let fetchHighestSubjects = async () => {
                 let response = await fetch("/api/getfach", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                     },
                     body: JSON.stringify(
                         {
@@ -224,7 +224,7 @@ let fetchGrades = async () => {
         const response = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
             },
             body: JSON.stringify(
                 {
@@ -254,7 +254,7 @@ let fetchGrades = async () => {
             for (let i = 0; i < Math.min(noten.length, 6); i++) {
                 let elem = document.createElement("li");
                 elem.classList.add("new-grades-list-item");
-                elem.id = "new-grade-item" + (i+1);
+                elem.id = "new-grade-item" + (i + 1);
 
                 let notenElem = noten[i];
                 let date = new Date(notenElem.added);
@@ -262,7 +262,7 @@ let fetchGrades = async () => {
                 let response = await fetch("/api/getfach", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
                     },
                     body: JSON.stringify(
                         {
@@ -271,7 +271,7 @@ let fetchGrades = async () => {
                         }
                     ),
                 });
-            
+
                 response.json().then((data) => {
                     elem.textContent = date.getDate() + "." + date.getMonth() + "." + date.getFullYear() + " | " + data.name + ": " + notenElem.np + " NP";
                     elem.style.color = "#" + data.farbe;
