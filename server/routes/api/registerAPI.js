@@ -20,7 +20,9 @@ router.post('/', function (req, res, next) {
     let email = req.body.email;
     let passwordHash = crypto.createHash('md5').update(req.body.password).digest('hex');
 
-    connection.query('INSERT INTO users.user(`username`, `email`, `password`) VALUES ("' + username + '", "' + email + '", "' + passwordHash + '")', function (err, rows, fields) {
+    let verificationKey = crypto.createHash('md5').update(req.body.username + (new Date().toISOString())).digest('hex');
+
+    connection.query('INSERT INTO users.user(`username`, `email`, `password`, `verification_key`) VALUES ("' + username + '", "' + email + '", "' + passwordHash + '", "' + verificationKey + '")', function (err, rows, fields) {
         if (err) {
             if (err.code == 'ER_DUP_ENTRY') {
                 console.log(err);
@@ -41,6 +43,8 @@ router.post('/', function (req, res, next) {
             connection.end();
             return;
         }
+
+        // Send verification email
 
         res.status(200).json({
             status: 'Created',
