@@ -73,3 +73,7 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
     }
     apiCall();
 });
+
+document.querySelector("#headericon").addEventListener('click', () => {
+    window.location.href="/";
+});

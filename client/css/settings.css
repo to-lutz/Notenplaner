@@ -39,6 +39,10 @@ header {
     background: linear-gradient(288deg, rgba(46, 113, 182, 1) 0%, rgba(9, 121, 78, 1) 100%);
 }
 
+#headericon {
+    cursor: pointer;
+}
+
 .fa-paper-plane {
     color: #fff !important;
 }
