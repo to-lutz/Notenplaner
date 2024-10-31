@@ -81,6 +81,9 @@ async function fetchSubjects() {
                         elem.innerHTML = '<span class="subject-item-name" id="subject-item' + subject.id + '-name">' + subject.name + '</span><div class="subject-item-management"><i class="fa-solid fa-pen" id="subject-item' + subject.id +'-edit"></i><i class="fa-solid fa-trash-can" id="subject-item' + subject.id +'-delete"></i></div>';
                         document.querySelector(".subjects-wrap").appendChild(elem);
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
+                        if (subject.isProfilfach) {
+                            document.querySelector("#subject-item" + subject.id + "-name").style.textDecoration = "underline";
+                        }
                     } 
                 }
             });
