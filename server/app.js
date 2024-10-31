@@ -15,6 +15,7 @@ var sessionIDAPIRouter = require('./routes/api/sessionIdAPI');
 var sessionIDRemoveAPIRouter = require('./routes/api/sessionIdRemoveAPI');
 var addFachAPIRouter = require('./routes/api/addFachAPI');
 var getFachAPIRouter = require('./routes/api/getFachAPI');
+var getFaecherAPIRouter = require('./routes/api/getFaecherAPI');
 
 var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 var topsubjectsRouter = require('./routes/api/noten/topsubjects');
@@ -42,6 +43,7 @@ app.use('/api/sessionid', sessionIDAPIRouter);
 app.use('/api/sessionidremove', sessionIDRemoveAPIRouter);
 app.use('/api/addfach', addFachAPIRouter);
 app.use('/api/getfach', getFachAPIRouter);
+app.use('/api/getfaecher', getFaecherAPIRouter);
 
 // Noten API Routes
 app.use('/api/noten/durchschnitt', notendurchschnittRouter);
