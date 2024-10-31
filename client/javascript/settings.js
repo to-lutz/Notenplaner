@@ -73,6 +73,7 @@ async function fetchSubjects() {
 
             response.json().then((data) => {
                 if (data.status == "Found") {
+                    data.subjects.sort((a, b) => b.isProfilfach - a.isProfilfach);
                     for (let subject of data.subjects) {
                         let elem = document.createElement("div");
                         elem.classList.add("subject-item-wrap");
