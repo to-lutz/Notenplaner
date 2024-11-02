@@ -24,6 +24,13 @@ var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 var topsubjectsRouter = require('./routes/api/noten/topsubjects');
 var getNotenRouter = require('./routes/api/noten/getNotenAPI');
 
+var rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+    windowMs: process.env.API_RATE_LIMIT_TIME_MINUTES * 60 * 1000, // 15 Minuten
+    max: process.env.API_MAX_REQUESTS // maximal 100 Anfragen pro IP innerhalb von 15 Minuten
+});
+
 var app = express();
 
 app.use(logger('dev'));
@@ -44,7 +51,7 @@ app.use('/register', registerRouter);
 app.use('/settings', settingsRouter);
 
 // API Routes
-app.use('/api', apiKeyMiddleware);
+app.use('/api', apiKeyMiddleware, limiter);
 app.use('/api/login', loginAPIRouter);
 app.use('/api/register', registerAPIRouter);
 app.use('/api/sessionid', sessionIDAPIRouter);
