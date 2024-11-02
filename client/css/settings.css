@@ -123,18 +123,24 @@ header {
 
 .settings-wrapper {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
+    width: 100%;
 }
 
-.subjects-wrap {
+.setting-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.subjects-wrap, .general-wrap {
     display: flex;
     justify-content: center;
     padding: 25px 0;
     flex-direction: column;
 }
 
-.subject-wrap-header {
+.subject-wrap-header, .general-wrap-header {
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     color: #cacaca;
     font-size: 24px;
