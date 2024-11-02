@@ -315,6 +315,8 @@ document.addEventListener('click', (event) => {
     }
 });
 
+// Select Menu End
+
 document.querySelector("#settings-page-btn").addEventListener('click', () => {
     window.location.href = "/settings";
 });
