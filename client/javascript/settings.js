@@ -129,3 +129,35 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
 document.querySelector("#headericon").addEventListener('click', () => {
     window.location.href = "/";
 });
+
+// Select Profile
+const selected = document.querySelector('.select-profile-selected');
+const items = document.querySelector('.profile-select-items');
+
+selected.addEventListener('click', () => {
+    items.style.display = items.style.display === 'block' ? 'none' : 'block';
+});
+
+items.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
+        items.style.display = 'none';
+    }
+});
+
+
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.general-select-profile')) {
+        items.style.display = 'none';
+    }
+    if (items.style.display === 'block') {
+        selected.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('.arrow').innerHTML = "<";
+    } else {
+        selected.style.borderColor = "#494949";
+        document.querySelector('.arrow').innerHTML = ">";
+    }
+});
+
+
+// Select Profile End
