@@ -78,13 +78,13 @@ async function fetchSubjects() {
                         let elem = document.createElement("div");
                         elem.classList.add("subject-item-wrap");
                         elem.id = "subject-item" + subject.id + "-wrap";
-                        elem.innerHTML = '<span class="subject-item-name" id="subject-item' + subject.id + '-name">' + subject.name + '</span><div class="subject-item-management"><i class="fa-solid fa-pen" id="subject-item' + subject.id +'-edit"></i><i class="fa-solid fa-trash-can" id="subject-item' + subject.id +'-delete"></i></div>';
+                        elem.innerHTML = '<span class="subject-item-name" id="subject-item' + subject.id + '-name">' + subject.name + '</span><div class="subject-item-management"><i class="fa-solid fa-pen" id="subject-item' + subject.id + '-edit"></i><i class="fa-solid fa-trash-can" id="subject-item' + subject.id + '-delete"></i></div>';
                         document.querySelector(".subjects-wrap").appendChild(elem);
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
                         if (subject.isProfilfach) {
                             document.querySelector("#subject-item" + subject.id + "-name").style.textDecoration = "underline";
                         }
-                    } 
+                    }
                 }
             });
         } catch (error) {
@@ -94,8 +94,36 @@ async function fetchSubjects() {
     apiCall();
 }
 
+async function fetchGeneral() {
+    await getSetting("profilrichtung", (value) => {
+        let fullProfile = "";
+        switch (value) {
+            case "ag":
+                fullProfile = "Agrarwissenschaftliche Richtung (AG)";
+                break;
+            case "btg":
+                fullProfile = "Biotechnologische Richtung (BTG)";
+                break;
+            case "eg":
+                fullProfile = "Ernährungswissenschaftliche Richtung (EG)";
+                break;
+            case "sgg":
+                fullProfile = "Sozial- und Gesellschaftwissenschaftliche Richtung (SGG)";
+                break;
+            case "tg":
+                fullProfile = "Technische Richtung (TG)";
+                break;
+            case "wg":
+                fullProfile = "Wirtschaftswissenschaftliche Richtung (WG)";
+                break;
+        }
+        document.querySelector(".select-profile-selected").innerHTML = fullProfile + ' <span class="arrow arrow-select-closed">></span>';
+    })
+}
+
 function fetchSettings() {
     fetchSubjects();
+    fetchGeneral();
 }
 
 let userID = undefined;
@@ -161,3 +189,35 @@ document.addEventListener('click', (event) => {
 
 
 // Select Profile End
+
+async function getSetting(name, callback) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/getsetting";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        name: name,
+                    }
+                ),
+            });
+
+            response.json().then((data) => {
+                if (data.status == "Found") {
+                    callback(data.value);
+                } else {
+                    return null;
+                }
+            })
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
