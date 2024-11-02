@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
+var cors = require('cors');
 var apiKeyMiddleware = require('./middleware/apiKeyMiddleware');
 
 var indexRouter = require('./routes/index');
@@ -30,6 +31,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.json());       // to support JSON-encoded bodies
+app.use(cors({
+    origin: '127.0.0.1',
+    methods: ['GET', 'POST']
+}));
 app.use(express.static(path.join(__dirname, '../client')));
 app.use(favicon(path.join(__dirname, '../client/images/favicon', 'favicon.ico')));
 
