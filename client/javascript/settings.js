@@ -117,7 +117,55 @@ async function fetchGeneral() {
                 fullProfile = "Wirtschaftswissenschaftliche Richtung (WG)";
                 break;
         }
-        document.querySelector(".select-profile-selected").innerHTML = fullProfile + ' <span class="arrow arrow-select-closed">></span>';
+        document.querySelector(".select-profile-selected").innerHTML = fullProfile + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
+    });
+    await getSetting("schwerpunkt", (value) => {
+        let fullFocus = "";
+        switch (value) {
+            case "ag":
+                fullFocus = "Agrarwissenschaft";
+                break;
+            case "bt":
+                fullFocus = "Biotechnologie";
+                break;
+            case "ew":
+                fullFocus = "Ernährungswissenschaft";
+                break;
+            // SG
+            case "sggs":
+                fullFocus = "Sozialwissenschaft";
+                break;
+            case "sggg":
+                fullFocus = "Gesundheitswissenschaft";
+                break;
+            // TG
+            case "tgm":
+                fullFocus = "Mechatronik";
+                break;
+            case "tgg":
+                fullFocus = "Gestaltungs- und Medientechnik";
+                break;
+            case "tgi":
+                fullFocus = "Informationstechnik";
+                break;
+            case "tgtm":
+                fullFocus = "Technik und Management";
+                break;
+            case "tgu":
+                fullFocus = "Umwelttechnik";
+                break;
+            // WG
+            case "wgw":
+                fullFocus = "Wirtschaft";
+                break;
+            case "wgi":
+                fullFocus = "Internationale Wirtschaft";
+                break;
+            case "wgf":
+                fullFocus = "Finanzmanagement";
+                break;
+        }
+        document.querySelector(".select-focus-selected").innerHTML = fullFocus + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
     })
 }
 
@@ -168,7 +216,7 @@ selected.addEventListener('click', () => {
 
 items.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
-        selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
+        selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
         items.style.display = 'none';
     }
 });
@@ -180,15 +228,45 @@ document.addEventListener('click', (event) => {
     }
     if (items.style.display === 'block') {
         selected.style.borderColor = "rgb(46, 113, 182)";
-        document.querySelector('.arrow').innerHTML = "<";
+        document.querySelector('#arrow-profile').innerHTML = "<";
     } else {
         selected.style.borderColor = "#494949";
-        document.querySelector('.arrow').innerHTML = ">";
+        document.querySelector('#arrow-profile').innerHTML = ">";
     }
+
+    // Focus
+    if (!event.target.closest('.general-select-focus')) {
+        itemsFocus.style.display = 'none';
+    }
+    if (itemsFocus.style.display === 'block') {
+        selectedFocus.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('#arrow-focus').innerHTML = "<";
+    } else {
+        selectedFocus.style.borderColor = "#494949";
+        document.querySelector('#arrow-focus').innerHTML = ">";
+    }
+
 });
 
 
 // Select Profile End
+
+// Select Focus
+const selectedFocus = document.querySelector('.select-focus-selected');
+const itemsFocus = document.querySelector('.focus-select-items');
+
+selectedFocus.addEventListener('click', () => {
+    itemsFocus.style.display = itemsFocus.style.display === 'block' ? 'none' : 'block';
+});
+
+itemsFocus.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        selectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-focus">></span>';
+        itemsFocus.style.display = 'none';
+    }
+});
+
+// Select Focus End
 
 async function getSetting(name, callback) {
     let apiCall = async () => {

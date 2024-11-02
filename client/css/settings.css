@@ -186,7 +186,7 @@ header {
     width: 100%;
 }
 
-.general-select-profile {
+.general-select-profile, .general-select-focus {
     position: relative;
     margin-top: 15px;
     background-color: transparent;
@@ -198,7 +198,7 @@ header {
     text-indent: 10px;
 }
 
-.select-profile-selected {
+.select-profile-selected, .select-focus-selected {
     background-color: transparent;
     color: white;
     padding: 10px;
@@ -210,7 +210,7 @@ header {
     align-items: center;
 }
 
-.profile-select-items {
+.profile-select-items, .focus-select-items {
     margin-top: 5px;
     position: absolute;
     background-color: #292929;
@@ -221,23 +221,23 @@ header {
     display: none;
 }
 
-.profile-select-items div {
+.profile-select-items div, .focus-select-items div {
     padding: 10px;
     cursor: pointer;
     font-size: 14px;
 }
 
-.profile-select-items div:hover {
+.profile-select-items div:hover, .focus-select-items div:hover {
     background-color: #494949;
     color: white;
 }
 
-.profile-select-items div:first-child {
+.profile-select-items div:first-child, .focus-select-items div:first-child {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-.profile-select-items div:last-child {
+.profile-select-items div:last-child, .focus-select-items div:last-child {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
