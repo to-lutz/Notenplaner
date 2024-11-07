@@ -249,3 +249,17 @@ header {
     transform: rotate(90deg);
     margin-top: -12.5px;
 }
+
+#general-save-button {
+    display: flex;
+    justify-content: center;
+}
+
+.save-btn {
+    color: #fff;
+    background-color: #27812e;
+    border: none;
+    border-radius: 35px;
+    width: 350px;
+    height: 50px;
+}
