@@ -19,6 +19,7 @@ var addFachAPIRouter = require('./routes/api/addFachAPI');
 var getFachAPIRouter = require('./routes/api/getFachAPI');
 var getFaecherAPIRouter = require('./routes/api/getFaecherAPI');
 var getSettingAPIRouter = require('./routes/api/getSettingAPI');
+var setSettingAPIRouter = require('./routes/api/setSettingAPI');
 
 var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 var topsubjectsRouter = require('./routes/api/noten/topsubjects');
@@ -60,6 +61,7 @@ app.use('/api/addfach', addFachAPIRouter);
 app.use('/api/getfach', getFachAPIRouter);
 app.use('/api/getfaecher', getFaecherAPIRouter);
 app.use('/api/getsetting', getSettingAPIRouter);
+app.use('/api/setsetting', setSettingAPIRouter);
 
 // Noten API Routes
 app.use('/api/noten/durchschnitt', notendurchschnittRouter);
