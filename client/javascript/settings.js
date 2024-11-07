@@ -316,6 +316,11 @@ itemsFocus.addEventListener('click', (event) => {
 
 // Select Focus End
 
+document.querySelector("#save-settings-btn").addEventListener("click", () => {
+    // Save Settings
+    setSetting("profilrichtung", currentSelectedProfile);
+});
+
 async function getSetting(name, callback) {
     let apiCall = async () => {
         // Get database data
@@ -341,6 +346,31 @@ async function getSetting(name, callback) {
                     return null;
                 }
             })
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
+
+async function setSetting(name, value) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/setsetting";
+        try {
+            await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        name: name,
+                        value: value
+                    }
+                ),
+            });
         } catch (error) {
             console.error(error.message);
         }

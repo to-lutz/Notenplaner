@@ -262,4 +262,5 @@ header {
     border-radius: 35px;
     width: 350px;
     height: 50px;
+    cursor: pointer;
 }
