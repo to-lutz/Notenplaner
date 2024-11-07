@@ -95,6 +95,7 @@ async function fetchSubjects() {
 }
 
 let currentSelectedProfile = "";
+let currentSelectedFocus = "";
 
 async function fetchGeneral() {
     await getSetting("profilrichtung", (value) => {
@@ -170,6 +171,7 @@ async function fetchGeneral() {
                 fullFocus = "Finanzmanagement";
                 break;
         }
+        currentSelectedFocus = value;
         document.querySelector(".select-focus-selected").innerHTML = fullFocus + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
     })
 }
@@ -214,7 +216,7 @@ function reloadFocusSubjects() {
 
     for (let subject of subjects) {
         let elem = document.createElement("div");
-        elem.value = subject.id;
+        elem.id = subject.value;
         elem.innerHTML = subject.name;
         listWrap.appendChild(elem);
     }
@@ -310,6 +312,7 @@ selectedFocus.addEventListener('click', () => {
 itemsFocus.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         selectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-focus">></span>';
+        currentSelectedFocus = event.target.id;
         itemsFocus.style.display = 'none';
     }
 });
@@ -319,6 +322,7 @@ itemsFocus.addEventListener('click', (event) => {
 document.querySelector("#save-settings-btn").addEventListener("click", () => {
     // Save Settings
     setSetting("profilrichtung", currentSelectedProfile);
+    setSetting("schwerpunkt", currentSelectedFocus);
 });
 
 async function getSetting(name, callback) {
