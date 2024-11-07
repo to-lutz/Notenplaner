@@ -172,7 +172,7 @@ async function fetchGeneral() {
                 break;
         }
         currentSelectedFocus = value;
-        document.querySelector(".select-focus-selected").innerHTML = fullFocus + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
+        document.querySelector(".select-focus-selected").innerHTML = fullFocus + ' <span class="arrow arrow-select-closed" id="arrow-focus">></span>';
     })
 }
 
