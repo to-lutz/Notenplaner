@@ -21,9 +21,6 @@ router.post('/', function (req, res, next) {
         if (rows.length != 0) {
             res.status(200).json({
                 status: 'Updated',
-                userid: rows[0].userid,
-                name: rows[0].settingsname,
-                value: rows[0].settingsvalue,
                 date: new Date(),
             });
 
