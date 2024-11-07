@@ -94,6 +94,8 @@ async function fetchSubjects() {
     apiCall();
 }
 
+let currentSelectedProfile = "";
+
 async function fetchGeneral() {
     await getSetting("profilrichtung", (value) => {
         let fullProfile = "";
@@ -117,7 +119,10 @@ async function fetchGeneral() {
                 fullProfile = "Wirtschaftswissenschaftliche Richtung (WG)";
                 break;
         }
+        currentSelectedProfile = value;
         document.querySelector(".select-profile-selected").innerHTML = fullProfile + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
+        // Add to focus subject selection for correct profile:
+        reloadFocusSubjects();
     });
     await getSetting("schwerpunkt", (value) => {
         let fullFocus = "";
@@ -174,6 +179,44 @@ function fetchSettings() {
     fetchGeneral();
 }
 
+function reloadFocusSubjects() {
+    let listWrap = document.querySelector(".focus-select-items");
+    listWrap.innerHTML = "";
+    let subjects = [];
+    switch (currentSelectedProfile) {
+        case "ag":
+            subjects.push({name: "Agrarwissenschaft", value: "ag"});
+            break;
+        case "btg":
+            subjects.push({name: "Biotechnologie", value: "btg"});
+            break;
+        case "eg":
+            subjects.push({name: "Ernährungswissenschaft", value: "eg"});
+            break;
+        case "sgg":
+            subjects.push({name: "Sozialwissenschaft", value: "sggs"});
+            subjects.push({name: "Gesundheitswissenschaft", value: "sggg"});
+            break;
+        case "tg":
+            subjects.push({name: "Mechatronik", value: "tgm"});
+            subjects.push({name: "Informationstechnik", value: "tgi"});
+            subjects.push({name: "Technik und Management", value: "tgtm"});
+            subjects.push({name: "Umwelttechnik", value: "tgu"});
+            break;
+        case "wg":
+            subjects.push({name: "Wirtschaft", value: "wgw"});
+            subjects.push({name: "Internationale Wirtschaft", value: "wgi"});
+            subjects.push({name: "Finanzmanagement", value: "wgf"});
+            break;
+    }
+    for (let subject of subjects) {
+        let elem = document.createElement("div");
+        elem.value = subject.id;
+        elem.innerHTML = subject.name;
+        listWrap.appendChild(elem);
+    }
+}
+
 let userID = undefined;
 
 document.querySelector("#sign-out").addEventListener("click", (e) => {
@@ -218,6 +261,8 @@ items.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-profile">></span>';
         items.style.display = 'none';
+        currentSelectedProfile = event.target.id;
+        reloadFocusSubjects();
     }
 });
 
