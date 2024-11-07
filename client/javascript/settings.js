@@ -209,6 +209,9 @@ function reloadFocusSubjects() {
             subjects.push({name: "Finanzmanagement", value: "wgf"});
             break;
     }
+    // First subject: innerHTML:
+    document.querySelector(".select-focus-selected").innerHTML = subjects[0].name + ' <span class="arrow arrow-select-closed" id="arrow-focus">></span>';
+
     for (let subject of subjects) {
         let elem = document.createElement("div");
         elem.value = subject.id;
