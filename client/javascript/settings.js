@@ -84,6 +84,8 @@ async function fetchSubjects() {
                             document.querySelector("#edit-subject-text").textContent = subject.name;
                             document.querySelector("#edit-subject-text").style.color = "#" + subject.farbe;
                             document.querySelector(".subject-edit-modal-name").value = subject.name;
+                            if (subject.isProfilfach) document.querySelector("#isProfilfachSwitch").checked = true;
+                            else document.querySelector("#isProfilfachSwitch").checked = false;
 
                             document.querySelector(".subject-edit-wrapper").style.visibility = "visible";
                         });
@@ -194,28 +196,28 @@ function reloadFocusSubjects() {
     let subjects = [];
     switch (currentSelectedProfile) {
         case "ag":
-            subjects.push({name: "Agrarwissenschaft", value: "ag"});
+            subjects.push({ name: "Agrarwissenschaft", value: "ag" });
             break;
         case "btg":
-            subjects.push({name: "Biotechnologie", value: "btg"});
+            subjects.push({ name: "Biotechnologie", value: "btg" });
             break;
         case "eg":
-            subjects.push({name: "Ernährungswissenschaft", value: "eg"});
+            subjects.push({ name: "Ernährungswissenschaft", value: "eg" });
             break;
         case "sgg":
-            subjects.push({name: "Sozialwissenschaft", value: "sggs"});
-            subjects.push({name: "Gesundheitswissenschaft", value: "sggg"});
+            subjects.push({ name: "Sozialwissenschaft", value: "sggs" });
+            subjects.push({ name: "Gesundheitswissenschaft", value: "sggg" });
             break;
         case "tg":
-            subjects.push({name: "Mechatronik", value: "tgm"});
-            subjects.push({name: "Informationstechnik", value: "tgi"});
-            subjects.push({name: "Technik und Management", value: "tgtm"});
-            subjects.push({name: "Umwelttechnik", value: "tgu"});
+            subjects.push({ name: "Mechatronik", value: "tgm" });
+            subjects.push({ name: "Informationstechnik", value: "tgi" });
+            subjects.push({ name: "Technik und Management", value: "tgtm" });
+            subjects.push({ name: "Umwelttechnik", value: "tgu" });
             break;
         case "wg":
-            subjects.push({name: "Wirtschaft", value: "wgw"});
-            subjects.push({name: "Internationale Wirtschaft", value: "wgi"});
-            subjects.push({name: "Finanzmanagement", value: "wgf"});
+            subjects.push({ name: "Wirtschaft", value: "wgw" });
+            subjects.push({ name: "Internationale Wirtschaft", value: "wgi" });
+            subjects.push({ name: "Finanzmanagement", value: "wgf" });
             break;
     }
     // First subject: innerHTML:
