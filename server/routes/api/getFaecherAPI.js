@@ -26,7 +26,7 @@ router.post('/', function (req, res, next) {
                     name: row.fachname,
                     farbe: row.farbe,
                     isProfilfach: row.isProfilfach,
-                    gewichtungSchrift: row.gewichtungSchrift,
+                    gewichtungSchrift: row.gewichtungSchriftlich,
                     gewichtungMuendl: row.gewichtungMuendlich,
                 })
             }
