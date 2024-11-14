@@ -86,6 +86,7 @@ async function fetchSubjects() {
                             document.querySelector(".subject-edit-modal-name").value = subject.name;
                             if (subject.isProfilfach) document.querySelector("#isProfilfachSwitch").checked = true;
                             else document.querySelector("#isProfilfachSwitch").checked = false;
+                            document.querySelector("#subjectColor").value = "#" + subject.farbe;
 
                             document.querySelector(".subject-edit-wrapper").style.visibility = "visible";
                         });

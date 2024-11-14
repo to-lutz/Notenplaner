@@ -252,7 +252,7 @@ header {
     outline: none;
 }
 
-.subject-edit-modal-profilfach-wrap {
+.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
@@ -260,6 +260,20 @@ header {
 
 .subject-edit-modal-checkbox {
     cursor: pointer;
+}
+
+.subject-edit-modal-color[type='color'] {
+    padding: 0;
+    width: 150%;
+    height: 150%;
+    margin: -25%;
+}
+
+.cp-wrapper {
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
 }
 
 /* Checkbox https://getcssscan.com/css-checkboxes-examples BEGIN*/
