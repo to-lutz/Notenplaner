@@ -337,6 +337,11 @@ document.querySelector("#save-settings-btn").addEventListener("click", () => {
     setSetting("schwerpunkt", currentSelectedFocus);
 });
 
+document.querySelector("#save-subject-btn").addEventListener("click", () => {
+    // TODO: Save Subject Settings
+
+});
+
 document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
     document.querySelector("#edit-subject-text").textContent = "?";
     document.querySelector(".subject-edit-wrapper").style.visibility = "hidden";
