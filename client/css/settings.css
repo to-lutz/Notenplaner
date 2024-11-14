@@ -233,6 +233,11 @@ header {
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
 }
 
+.subject-edit-modal-sublabel {
+    color: #aaaaaa;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+}
+
 .subject-edit-modal-input {
     height: 35px;
     background: rgba(255, 255, 255, 0.22);
@@ -252,10 +257,30 @@ header {
     outline: none;
 }
 
-.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap {
+.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap, .subject-edit-modal-weight-wrap {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.subject-edit-modal-weight-wrap {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.subject-edit-modal-weight-value-subwrap {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.subject-edit-modal-weight-value-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .subject-edit-modal-checkbox {
@@ -274,6 +299,14 @@ header {
     width: 2em;
     height: 2em;
     border-radius: 50%;
+}
+
+.subject-edit-modal-slider {
+    color: #275EFE;
+}
+
+.subject-edit-modal-inputNum {
+    width: 90%;
 }
 
 /* Checkbox https://getcssscan.com/css-checkboxes-examples BEGIN*/

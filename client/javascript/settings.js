@@ -87,6 +87,8 @@ async function fetchSubjects() {
                             if (subject.isProfilfach) document.querySelector("#isProfilfachSwitch").checked = true;
                             else document.querySelector("#isProfilfachSwitch").checked = false;
                             document.querySelector("#subjectColor").value = "#" + subject.farbe;
+                            document.querySelector("#gewichtungSchriftl").value = subject.gewichtungSchrift;
+                            document.querySelector("#gewichtungMuendl").value = subject.gewichtungMuendl;
 
                             document.querySelector(".subject-edit-wrapper").style.visibility = "visible";
                         });
