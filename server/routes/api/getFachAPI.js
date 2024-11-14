@@ -26,6 +26,8 @@ router.post('/', function (req, res, next) {
                 by: rows[0].userid,
                 farbe: rows[0].farbe,
                 isProfilfach: rows[0].isProfilfach,
+                gewichtungSchrift: rows[0].gewichtungSchrift,
+                gewichtungMuendl: rows[0].gewichtungMuendlich,
                 date: new Date(),
             });
 
