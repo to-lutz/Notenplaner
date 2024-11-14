@@ -342,6 +342,56 @@ document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
     document.querySelector(".subject-edit-wrapper").style.visibility = "hidden";
 });
 
+// document.querySelector("#gewichtungSchriftl").addEventListener("change", (e) => {
+//     let gewichtSchriftl = document.querySelector("#gewichtungSchriftl");
+//     let gewichtMuendl = document.querySelector("#gewichtungMuendl");
+
+//     let schrift = gewichtSchriftl.value;
+
+//     if (schrift.value > 100) gewichtSchriftl.value = 100;
+//     if (schrift.value < 0) gewichtSchriftl.value = 0;
+
+//     gewichtMuendl.value = 100-schrift;
+// });
+
+// document.querySelector("#gewichtungMuendl").addEventListener("change", (e) => {
+//     let gewichtSchriftl = document.querySelector("#gewichtungSchriftl");
+//     let gewichtMuendl = document.querySelector("#gewichtungMuendl");
+
+//     let muendl = gewichtMuendl.value;
+
+//     if (muendl.value > 100) gewichtMuendl.value = 100;
+//     if (muendl.value < 0) gewichtMuendl.value = 0;
+
+//     gewichtSchriftl.value = 100-muendl;
+// }); 
+
+document.querySelector("#gewichtungSchriftl").addEventListener("input", (e) => {
+    let gewichtSchriftl = document.querySelector("#gewichtungSchriftl");
+    let gewichtMuendl = document.querySelector("#gewichtungMuendl");
+
+    let schrift = parseInt(gewichtSchriftl.value) || 0;
+
+    if (schrift > 100) schrift = 100;
+    if (schrift < 0) schrift = 0;
+
+    gewichtSchriftl.value = schrift;
+    gewichtMuendl.value = 100 - schrift;
+});
+
+document.querySelector("#gewichtungMuendl").addEventListener("input", (e) => {
+    let gewichtSchriftl = document.querySelector("#gewichtungSchriftl");
+    let gewichtMuendl = document.querySelector("#gewichtungMuendl");
+
+    let muendl = parseInt(gewichtMuendl.value) || 0;
+
+    if (muendl > 100) muendl = 100;
+    if (muendl < 0) muendl = 0;
+
+    gewichtMuendl.value = muendl;
+    gewichtSchriftl.value = 100 - muendl;
+});
+
 async function getSetting(name, callback) {
     let apiCall = async () => {
         // Get database data
