@@ -20,6 +20,24 @@
         <i class="fa-regular fa-paper-plane fa-2xl"></i>
     </div> -->
     <div class="wrapper">
+        <div class="subject-edit-wrapper">
+            <div class="subject-edit">
+                <div class="subject-edit-modal-header">
+                    <div class="subject-edit-modal-header-text" id="edit-subject-text">?</div>
+                    <i class="fa-solid fa-x fa-lg fa-close-subj-edit"></i>
+                </div>
+                <div class="subject-edit-modal-main">
+                    <label for="fachname" class="subject-edit-modal-label">Name des Faches:</label>
+                    <input type="text" class="subject-edit-modal-name subject-edit-modal-input" id="fachname"
+                        placeholder="Name des Faches">
+                    <div class="subject-edit-modal-profilfach-wrap">
+                        <label for="isProfilfachSwitch" class="subject-edit-modal-label">Profilfach?</label>
+                        <input type="checkbox" class="subject-edit-modal-checkbox" id="isProfilfachSwitch">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="header-wrapper">
             <header>
                 <div class="header-left-side">
@@ -81,8 +99,8 @@
 
             </div>
         </div>
-        </div>
-        <script src="javascript/settings.js" type="module"></script>
+    </div>
+    <script src="javascript/settings.js" type="module"></script>
 </body>
 
 </html>

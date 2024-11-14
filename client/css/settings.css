@@ -182,6 +182,86 @@ header {
     cursor: pointer;
 }
 
+.fa-close-subj-edit {
+    color: #fff !important;
+    cursor: pointer; 
+    width: 25px;
+}
+
+.subject-edit-wrapper {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.subject-edit {
+    background-color: #292929;
+    width: max(500px, 20%);
+    height: 500px;
+    padding: 20px;
+    border-radius: 35px;
+}
+
+.subject-edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.subject-edit-modal-header-text {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    text-align: center;
+}
+
+.subject-edit-modal-main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.subject-edit-modal-label {
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+}
+
+.subject-edit-modal-input {
+    height: 35px;
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6.8px);
+    -webkit-backdrop-filter: blur(6.8px);
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    margin: 10px 0;
+    color: #fff;
+    font-family: 'OceanWide', Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-indent: 10px;
+}
+
+.subject-edit-modal-input:focus {
+    outline: none;
+}
+
+.subject-edit-modal-profilfach-wrap {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.subject-edit-modal-checkbox {
+    cursor: pointer;
+}
+
 .general-item-wrap {
     width: 100%;
 }

@@ -80,6 +80,13 @@ async function fetchSubjects() {
                         elem.id = "subject-item" + subject.id + "-wrap";
                         elem.innerHTML = '<span class="subject-item-name" id="subject-item' + subject.id + '-name">' + subject.name + '</span><div class="subject-item-management"><i class="fa-solid fa-pen" id="subject-item' + subject.id + '-edit"></i><i class="fa-solid fa-trash-can" id="subject-item' + subject.id + '-delete"></i></div>';
                         document.querySelector(".subjects-wrap").appendChild(elem);
+                        document.querySelector("#subject-item" + subject.id + "-edit").addEventListener("click", () => {
+                            document.querySelector("#edit-subject-text").textContent = subject.name;
+                            document.querySelector("#edit-subject-text").style.color = "#" + subject.farbe;
+                            document.querySelector(".subject-edit-modal-name").value = subject.name;
+
+                            document.querySelector(".subject-edit-wrapper").style.visibility = "visible";
+                        });
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
                         if (subject.isProfilfach) {
                             document.querySelector("#subject-item" + subject.id + "-name").style.textDecoration = "underline";
@@ -323,6 +330,11 @@ document.querySelector("#save-settings-btn").addEventListener("click", () => {
     // Save Settings
     setSetting("profilrichtung", currentSelectedProfile);
     setSetting("schwerpunkt", currentSelectedFocus);
+});
+
+document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
+    document.querySelector("#edit-subject-text").textContent = "?";
+    document.querySelector(".subject-edit-wrapper").style.visibility = "hidden";
 });
 
 async function getSetting(name, callback) {
