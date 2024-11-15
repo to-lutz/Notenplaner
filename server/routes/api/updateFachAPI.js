@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     connection.connect();
 
 
-    connection.query('UPDATE notenplaner.faecher SET ' + req.body.setting + '="' + req.body.value + '" WHERE userid="' + req.body.userid + '" AND fachid="' + req.body.fachid + '"', function (err, rows, fields) {
+    connection.query('UPDATE notenplaner.faecher SET ' + req.body.setting + '="' + req.body.value + '" WHERE userid="' + req.body.userid + '" AND id=' + req.body.fachid, function (err, rows, fields) {
         if (err) {
             throw err;
         }
