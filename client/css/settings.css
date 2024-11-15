@@ -133,7 +133,7 @@ header {
     justify-content: space-evenly;
 }
 
-.subjects-wrap, .general-wrap {
+.subjects-wrap, .general-wrap, .abitur-wrap {
     display: flex;
     justify-content: center;
     padding: 25px 0;
@@ -141,7 +141,7 @@ header {
     align-items: center;
 }
 
-.subject-wrap-header, .general-wrap-header {
+.subject-wrap-header, .general-wrap-header, .abitur-wrap-header {
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     color: #cacaca;
     font-size: 24px;
@@ -455,7 +455,7 @@ header {
 
 /* Checkbox https://getcssscan.com/css-checkboxes-examples END*/
 
-.general-item-wrap {
+.general-item-wrap, #abitur-item-wrap {
     width: 100%;
 }
 
@@ -523,12 +523,12 @@ header {
     margin-top: -12.5px;
 }
 
-#general-save-button {
+#general-save-button, #abitur-save-btn {
     display: flex;
     justify-content: center;
 }
 
-.save-btn {
+.save-btn, .save-abitur-btn {
     color: #fff;
     background-color: #27812e;
     border: none;
