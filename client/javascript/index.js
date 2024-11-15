@@ -273,7 +273,7 @@ let fetchGrades = async () => {
                 });
 
                 response.json().then((data) => {
-                    elem.textContent = date.getDate() + "." + date.getMonth() + "." + date.getFullYear() + " | " + data.name + ": " + notenElem.np + " NP";
+                    elem.textContent = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " | " + data.name + ": " + notenElem.np + " NP";
                     elem.style.color = "#" + data.farbe;
                     list.appendChild(elem);
                 });
