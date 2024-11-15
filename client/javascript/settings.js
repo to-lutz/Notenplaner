@@ -352,7 +352,7 @@ document.querySelector("#save-subject-btn").addEventListener("click", () => {
     setSubjectSetting("isProfilfach", profilfach, fachid);
     setSubjectSetting("gewichtungSchriftlich", gewichtS, fachid);
     setSubjectSetting("gewichtungMuendlich", gewichtM, fachid);
-
+    location.href = "/settings";
 });
 
 document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
