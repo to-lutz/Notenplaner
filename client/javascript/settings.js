@@ -90,6 +90,8 @@ async function fetchSubjects() {
                             document.querySelector("#gewichtungSchriftl").value = subject.gewichtungSchrift;
                             document.querySelector("#gewichtungMuendl").value = subject.gewichtungMuendl;
 
+                            document.querySelector("#save-subject-btn").setAttribute("subjID", subject.id);
+
                             document.querySelector(".subject-edit-wrapper").style.visibility = "visible";
                         });
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
@@ -339,6 +341,17 @@ document.querySelector("#save-settings-btn").addEventListener("click", () => {
 
 document.querySelector("#save-subject-btn").addEventListener("click", () => {
     // TODO: Save Subject Settings
+    let name = document.querySelector("#fachname").value;
+    let color = document.querySelector("#subjectColor").value.replace("#", "");
+    let profilfach = document.querySelector("#isProfilfachSwitch").checked ? 1 : 0;
+    let gewichtS = document.querySelector("#gewichtungSchriftl").value;
+    let gewichtM = document.querySelector("#gewichtungMuendl").value;
+    let fachid = document.querySelector("#save-subject-btn").getAttribute("subjID");
+    setSubjectSetting("fachname", name, fachid);
+    setSubjectSetting("farbe", color, fachid);
+    setSubjectSetting("isProfilfach", profilfach, fachid);
+    setSubjectSetting("gewichtungSchriftlich", gewichtS, fachid);
+    setSubjectSetting("gewichtungMuendlich", gewichtM, fachid);
 
 });
 
@@ -443,6 +456,32 @@ async function setSetting(name, value) {
                     {
                         userid: userID,
                         name: name,
+                        value: value
+                    }
+                ),
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
+
+async function setSubjectSetting(name, value, fachid) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/updatefach";
+        try {
+            await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        fachid: fachid,
+                        setting: name,
                         value: value
                     }
                 ),
