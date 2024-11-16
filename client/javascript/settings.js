@@ -543,6 +543,15 @@ document.querySelector("#save-subject-btn").addEventListener("click", () => {
     location.href = "/settings";
 });
 
+document.querySelector(".save-abitur-btn").addEventListener("click", () => {
+    for (let i = 1; i < 5; i++) {
+        let elem = document.querySelector("#select-abi" + (i + 1) + "-selected");
+        let fachname = elem.textContent.replace(">", "").replace("<", "").trim();
+        if (!fachname.includes("auswählen"))setAbiturFach(i, fachname);
+    }
+    location.href = "/settings";
+});
+
 document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
     document.querySelector("#edit-subject-text").textContent = "?";
     document.querySelector(".subject-edit-wrapper").style.visibility = "hidden";
@@ -696,27 +705,47 @@ async function setSetting(name, value) {
     apiCall();
 }
 
-async function setAbiturFach(id, fachid) {
+async function setAbiturFach(id, fachname) {
     let apiCall = async () => {
         // Get database data
-        const url = "/api/setabiturfach";
-        try {
-            await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
-                },
-                body: JSON.stringify(
-                    {
-                        userid: userID,
-                        fachid: fachid,
-                        abiturid: id
-                    }
-                ),
-            });
-        } catch (error) {
-            console.error(error.message);
-        }
+        let response = await fetch("/api/getfachbyname", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                    fachname: fachname
+                }
+            ),
+        });
+
+        response.json().then(async (data) => {
+
+            if (data.status == "Found") {
+
+                const url = "/api/setabiturfach";
+                try {
+                    await fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                        },
+                        body: JSON.stringify(
+                            {
+                                userid: userID,
+                                fachid: data.id,
+                                abiturid: id
+                            }
+                        ),
+                    });
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+        });
+
     }
     apiCall();
 }
