@@ -17,13 +17,13 @@ router.post('/', function (req, res, next) {
     connection.connect();
 
     let hashedPassword = crypto.createHash('md5').update(req.body.password).digest('hex');
-    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username +'" AND password="' + hashedPassword + '"', function (err, rows, fields) {
+    connection.query('SELECT * FROM users.user WHERE username="' + req.body.username + '" AND password="' + hashedPassword + '"', function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
             let sessID = new Date().getTime() * rows[0].id;
             let username = rows[0].username;
             let id = rows[0].id;
-            
+
             if (rows[0].active != "1") {
                 res.status(403).json({
                     status: 'Unauthorized',
@@ -37,9 +37,9 @@ router.post('/', function (req, res, next) {
                 return;
             }
 
-            connection.query("INSERT INTO `users`.`sessionids`(`sessionid`,`username`,`userid`) VALUES(" + sessID +",'" + rows[0].username + "'," + rows[0].id + ");", (err, rows, fields) => {
+            connection.query("INSERT INTO `users`.`sessionids`(`sessionid`,`username`,`userid`) VALUES(" + sessID + ",'" + rows[0].username + "'," + rows[0].id + ");", (err, rows, fields) => {
                 if (err) throw err;
-                
+
                 res.status(200).json({
                     status: 'Authorized',
                     message: 'Eingeloggt als ' + username,
