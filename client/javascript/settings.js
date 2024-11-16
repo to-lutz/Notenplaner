@@ -489,11 +489,17 @@ document.querySelector("#save-subject-btn").addEventListener("click", () => {
     let gewichtS = document.querySelector("#gewichtungSchriftl").value;
     let gewichtM = document.querySelector("#gewichtungMuendl").value;
     let fachid = document.querySelector("#save-subject-btn").getAttribute("subjID");
+    let afb = 0;
+    if (document.querySelector(".subject-edit-modal-afb1").checked) afb = 1;
+    else if (document.querySelector(".subject-edit-modal-afb2").checked) afb = 2;
+    else if (document.querySelector(".subject-edit-modal-afb3").checked) afb = 3;
+    else afb = -1;
     setSubjectSetting("fachname", name, fachid);
     setSubjectSetting("farbe", color, fachid);
     setSubjectSetting("isProfilfach", profilfach, fachid);
     setSubjectSetting("gewichtungSchriftlich", gewichtS, fachid);
     setSubjectSetting("gewichtungMuendlich", gewichtM, fachid);
+    setSubjectSetting("anforderungsbereich", afb, fachid);
     location.href = "/settings";
 });
 
