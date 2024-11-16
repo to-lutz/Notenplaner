@@ -23,8 +23,7 @@ router.post('/', function (req, res, next) {
         }
 
         if (req.body.setting == "isProfilfach" && req.body.value == true) {
-            // TODO: Check for previous profilfach and set that to false
-
+            connection.query('UPDATE notenplaner.faecher SET isProfilfach=0 WHERE userid=' + req.body.userid + ' AND id!=' + req.body.fachid);
             updateAbiFach(req.body.fachid, req.body.userid, 0);
         }
 
