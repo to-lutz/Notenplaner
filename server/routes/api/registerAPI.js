@@ -102,7 +102,7 @@ router.post('/', function (req, res, next) {
             <div class="container">
                 <h2>Notenplaner | Account-Verifizierung</h2>
                 <p>Vielen Dank, dass Sie sich registriert haben! Bitte klicken Sie auf den Button unten, um Ihren Account zu verifizieren:</p>
-                <a href="${ownUrl}/verify?token=${verificationKey}" class="btn">Account verifizieren</a>
+                <a href="${ownUrl}/api/verify?token=${verificationKey}" class="btn">Account verifizieren</a>
                 <p>Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese E-Mail.</p>
                 <div class="footer">
                     Notenplaner
@@ -116,7 +116,7 @@ router.post('/', function (req, res, next) {
             from: "no-reply@notenplaner.de",
             to: email,
             subject: "Notenplaner | E-Mail verifizieren",
-            text: "Sehr geehrter Nutzer,\nBitte verifizieren sie ihre E-Mail über folgenden Link:\n\n" + ownUrl + "/verify?token=" + verificationKey + "\n\nMit freundlichen Grüßen,\nihr Notenplaner Team",
+            text: "Sehr geehrter Nutzer,\nBitte verifizieren sie ihre E-Mail über folgenden Link:\n\n" + ownUrl + "/api/verify?token=" + verificationKey + "\n\nMit freundlichen Grüßen,\nihr Notenplaner Team",
             html: mailHTML
         };
 
