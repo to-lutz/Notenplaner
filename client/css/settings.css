@@ -105,12 +105,16 @@ header {
 }
 
 .title-wrapper {
-    height: calc(100vh - 100px);
-    overflow-y: hidden;
     background-color: #151625;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+}
+
+@media only screen and (min-width: 1400px) {
+    .title-wrapper {
+        height: calc(100vh - 100px);
+    }
 }
 
 .settings-wrapper-header-text {
@@ -131,6 +135,13 @@ header {
 .setting-wrapper {
     display: flex;
     justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 1400px) {
+    .setting-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .subjects-wrap, .general-wrap, .abitur-wrap {
