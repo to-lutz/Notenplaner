@@ -89,6 +89,10 @@ async function fetchSubjects() {
                             document.querySelector("#subjectColor").value = "#" + subject.farbe;
                             document.querySelector("#gewichtungSchriftl").value = subject.gewichtungSchrift;
                             document.querySelector("#gewichtungMuendl").value = subject.gewichtungMuendl;
+                            if (subject.anforderungsbereich == 0) document.querySelectorAll(".subject-edit-modal-radio").forEach(elem => elem.checked = false);
+                            else if (subject.anforderungsbereich == 1) document.querySelector(".subject-edit-modal-afb1").checked = true;
+                            else if (subject.anforderungsbereich == 2) document.querySelector(".subject-edit-modal-afb2").checked = true;
+                            else if (subject.anforderungsbereich == 3) document.querySelector(".subject-edit-modal-afb3").checked = true;
 
                             document.querySelector("#save-subject-btn").setAttribute("subjID", subject.id);
 
