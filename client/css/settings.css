@@ -204,7 +204,7 @@ header {
 .subject-edit {
     background-color: #292929;
     width: max(500px, 20%);
-    height: 450px;
+    height: 500px;
     padding: 20px;
     border-radius: 35px;
 }
@@ -257,14 +257,14 @@ header {
     outline: none;
 }
 
-.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap, .subject-edit-modal-weight-wrap {
+.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap, .subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.subject-edit-modal-weight-wrap {
+.subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
@@ -274,6 +274,16 @@ header {
     display: flex;
     flex-direction: column;
     width: 50%;
+}
+
+.subject-edit-modal-afb-subwrap {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.subject-edit-modal-afb-value-wrap {
+    margin: 5px 0;
 }
 
 .subject-edit-modal-weight-value-wrap {
