@@ -44,7 +44,26 @@ router.post('/', function (req, res, next) {
             return;
         }
 
+        let userid = rows.insertId;
+
         // Send verification email
+
+        // Set default abitur faecher
+        for (let i = 0; i < 5; i++) {
+
+            connection.query('INSERT INTO notenplaner.abitur(`userid`, `fachid`, `abiturfachid`) VALUES ("' + userid + '", "0","' + i + '")', function (err, rows, fields) {
+                if (err) {
+                    connection.end();
+                    res.status(400).json({
+                        status: 'Error',
+                        message: 'Error when setting Abitur subjects in DB',
+                        date: new Date(),
+                    });
+                    return;
+                }
+            });
+
+        }
 
         res.status(200).json({
             status: 'Created',
