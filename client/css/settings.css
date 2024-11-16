@@ -204,7 +204,7 @@ header {
 .subject-edit {
     background-color: #292929;
     width: max(500px, 20%);
-    height: 500px;
+    height: 550px;
     padding: 20px;
     border-radius: 35px;
 }
