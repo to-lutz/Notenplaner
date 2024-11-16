@@ -123,7 +123,7 @@ async function fetchSubjects() {
                             elem4.id = "subjectID-" + subject.id;
                             elem4.innerHTML = subject.name;
                             abiFach4Wrap.appendChild(elem4);
-                            
+
                             let abiFach5Wrap = document.querySelector("#abitur-f5-items");
                             let elem5 = document.createElement("div");
                             elem5.id = "subjectID-" + subject.id;
@@ -225,6 +225,7 @@ async function fetchGeneral() {
 function fetchSettings() {
     fetchSubjects();
     fetchGeneral();
+    fetchAbiturSubjects();
 }
 
 function reloadFocusSubjects() {
@@ -265,6 +266,42 @@ function reloadFocusSubjects() {
         elem.id = subject.value;
         elem.innerHTML = subject.name;
         listWrap.appendChild(elem);
+    }
+}
+
+function fetchAbiturSubjects() {
+    for (let i = 1; i < 5; i++) {
+        getAbiturFach(i, async (abifach) => {
+
+            if (abifach.fachid != 0) {
+
+                let response = await fetch("/api/getfach", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                    },
+                    body: JSON.stringify(
+                        {
+                            userid: userID,
+                            fachid: abifach.fachid
+                        }
+                    ),
+                });
+
+                if (response.status == 200) {
+                    response.json().then((data) => {
+
+                        let currentAbiFachElem = document.querySelector("#select-abi" + (i + 1) + "-selected");
+                        currentAbiFachElem.innerHTML = data.name + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f' + (i + 1) + '">></span>';
+                        currentAbiFachElem.setAttribute("afb", abifach.anforderungsbereich);
+                        currentAbiFachElem.setAttribute("fachid", abifach.fachid);
+                    })
+                }
+
+            }
+
+
+        });
     }
 }
 
@@ -602,6 +639,38 @@ async function getSetting(name, callback) {
     apiCall();
 }
 
+async function getAbiturFach(abiturfachid, callback) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/getabiturfach";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        abiturid: abiturfachid
+                    }
+                ),
+            });
+
+            response.json().then((data) => {
+                if (data.status == "Found") {
+                    callback(data);
+                } else {
+                    return null;
+                }
+            })
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
+
 async function setSetting(name, value) {
     let apiCall = async () => {
         // Get database data
@@ -617,6 +686,31 @@ async function setSetting(name, value) {
                         userid: userID,
                         name: name,
                         value: value
+                    }
+                ),
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
+
+async function setAbiturFach(id, fachid) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/setabiturfach";
+        try {
+            await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        fachid: fachid,
+                        abiturid: id
                     }
                 ),
             });
