@@ -552,6 +552,15 @@ document.querySelector("#gewichtungMuendl").addEventListener("input", (e) => {
     gewichtSchriftl.value = 100 - muendl;
 });
 
+document.querySelectorAll(".subject-edit-modal-radio").forEach(elem => elem.addEventListener("click", (e) => {
+    let list = document.querySelectorAll(".subject-edit-modal-radio");
+    for (let item of list) {
+        if (item.id != e.target.id) {
+            item.checked = false;
+        }
+    }
+}));
+
 async function getSetting(name, callback) {
     let apiCall = async () => {
         // Get database data
