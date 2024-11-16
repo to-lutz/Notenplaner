@@ -49,18 +49,22 @@ let updateAbiFach = function (fachid, userid, abiturid) {
 
     connection.connect();
 
-    connection.query('UPDATE notenplaner.abitur SET fachid="' + fachid + '" WHERE userid="' + userid +'" AND abiturfachid="' + abiturid + '"', function (err, rows, fields) {
-        if (err) throw err;
-        if (rows.length != 0) {
+    let afb;
+    connection.query('SELECT anforderungsbereich FROM notenplaner.faecher WHERE userid=' + userid + ' AND id=' + fachid, (err, rows, fields) => {
+        afb = rows[0].anforderungsbereich;
 
-            // TODO: Get Anforderungsbereich and Set
+        connection.query('UPDATE notenplaner.abitur SET fachid="' + fachid + '", anforderungsbereich="' + afb + '" WHERE userid="' + userid + '" AND abiturfachid="' + abiturid + '"', function (err, rows, fields) {
+            if (err) throw err;
+            if (rows.length != 0) {
 
-            connection.end();
-        } else {
+                connection.end();
+            } else {
 
-            connection.end();
-        }
+                connection.end();
+            }
+        });
     });
+
 }
 
 module.exports = router;
