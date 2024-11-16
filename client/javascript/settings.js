@@ -547,9 +547,8 @@ document.querySelector(".save-abitur-btn").addEventListener("click", () => {
     for (let i = 1; i < 5; i++) {
         let elem = document.querySelector("#select-abi" + (i + 1) + "-selected");
         let fachname = elem.textContent.replace(">", "").replace("<", "").trim();
-        if (!fachname.includes("auswählen"))setAbiturFach(i, fachname);
+        setAbiturFach(i, fachname);
     }
-    location.href = "/settings";
 });
 
 document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
@@ -727,7 +726,7 @@ async function setAbiturFach(id, fachname) {
 
                 const url = "/api/setabiturfach";
                 try {
-                    await fetch(url, {
+                    let resp2 = await fetch(url, {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
@@ -740,6 +739,10 @@ async function setAbiturFach(id, fachname) {
                             }
                         ),
                     });
+
+                    if (data.id == 5) {
+                        resp2.json().then(() => location.href = "/settings");
+                    }
                 } catch (error) {
                     console.error(error.message);
                 }
