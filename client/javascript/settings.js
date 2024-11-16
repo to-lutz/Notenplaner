@@ -100,6 +100,31 @@ async function fetchSubjects() {
 
                             // Abitur Selection set Subject 1
                             document.querySelector("#select-abi1-selected").innerHTML = subject.name + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f1">></span>';
+                        } else {
+                            // Add to other abitur selections 
+                            let abiFach2Wrap = document.querySelector("#abitur-f2-items");
+                            let elem2 = document.createElement("div");
+                            elem2.id = "subjectID-" + subject.id;
+                            elem2.innerHTML = subject.name;
+                            abiFach2Wrap.appendChild(elem2);
+
+                            let abiFach3Wrap = document.querySelector("#abitur-f3-items");
+                            let elem3 = document.createElement("div");
+                            elem3.id = "subjectID-" + subject.id;
+                            elem3.innerHTML = subject.name;
+                            abiFach3Wrap.appendChild(elem3);
+
+                            let abiFach4Wrap = document.querySelector("#abitur-f4-items");
+                            let elem4 = document.createElement("div");
+                            elem4.id = "subjectID-" + subject.id;
+                            elem4.innerHTML = subject.name;
+                            abiFach4Wrap.appendChild(elem4);
+                            
+                            let abiFach5Wrap = document.querySelector("#abitur-f5-items");
+                            let elem5 = document.createElement("div");
+                            elem5.id = "subjectID-" + subject.id;
+                            elem5.innerHTML = subject.name;
+                            abiFach5Wrap.appendChild(elem5);
                         }
                     }
                 }
