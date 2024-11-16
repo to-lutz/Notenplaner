@@ -97,6 +97,9 @@ async function fetchSubjects() {
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
                         if (subject.isProfilfach) {
                             document.querySelector("#subject-item" + subject.id + "-name").style.textDecoration = "underline";
+
+                            // Abitur Selection set Subject 1
+                            document.querySelector("#select-abi1-selected").innerHTML = subject.name + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f1">></span>';
                         }
                     }
                 }
