@@ -25,6 +25,8 @@ var setSettingAPIRouter = require('./routes/api/setSettingAPI');
 var setAbiturFachAPIRouter = require('./routes/api/setAbiturFachAPI');
 var getAbiturFachAPIRouter = require('./routes/api/getAbiturFachAPI');
 
+var verifyAPIRouter = require('./routes/api/verifyAPI');
+
 var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 var topsubjectsRouter = require('./routes/api/noten/topsubjects');
 var getNotenRouter = require('./routes/api/noten/getNotenAPI');
@@ -70,6 +72,8 @@ app.use('/api/getsetting', getSettingAPIRouter);
 app.use('/api/setsetting', setSettingAPIRouter);
 app.use('/api/setabiturfach', setAbiturFachAPIRouter);
 app.use('/api/getabiturfach', getAbiturFachAPIRouter);
+
+app.use('/verify', verifyAPIRouter);
 
 // Noten API Routes
 app.use('/api/noten/durchschnitt', notendurchschnittRouter);
