@@ -310,8 +310,58 @@ document.addEventListener('click', (event) => {
         document.querySelector('#arrow-focus').innerHTML = ">";
     }
 
-});
+    // Abi Fach 2
+    if (!event.target.closest('#abi-fach2-select')) {
+        abiFach2Focus.style.display = 'none';
+    }
+    if (abiFach2Focus.style.display === 'block') {
+        abiFach2SelectedFocus.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('#arrow-abitur-f2').innerHTML = "<";
+    } else {
+        abiFach2SelectedFocus.style.borderColor = "#494949";
+        document.querySelector('#arrow-abitur-f2').innerHTML = ">";
+    }
 
+    // Abi Fach 3
+    if (!event.target.closest('#abi-fach3-select')) {
+        abiFach3Focus.style.display = 'none';
+    }
+    if (abiFach3Focus.style.display === 'block') {
+        abiFach3SelectedFocus.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('#arrow-abitur-f3').innerHTML = "<";
+    } else {
+        abiFach3SelectedFocus.style.borderColor = "#494949";
+        document.querySelector('#arrow-abitur-f3').innerHTML = ">";
+    }
+
+
+    // Abi Fach 4
+    if (!event.target.closest('#abi-fach4-select')) {
+        abiFach4Focus.style.display = 'none';
+    }
+    if (abiFach4Focus.style.display === 'block') {
+        abiFach4SelectedFocus.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('#arrow-abitur-f4').innerHTML = "<";
+    } else {
+        abiFach4SelectedFocus.style.borderColor = "#494949";
+        document.querySelector('#arrow-abitur-f4').innerHTML = ">";
+    }
+
+
+    // Abi Fach 5
+    if (!event.target.closest('#abi-fach5-select')) {
+        abiFach5Focus.style.display = 'none';
+    }
+    if (abiFach5Focus.style.display === 'block') {
+        abiFach5SelectedFocus.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('#arrow-abitur-f5').innerHTML = "<";
+    } else {
+        abiFach5SelectedFocus.style.borderColor = "#494949";
+        document.querySelector('#arrow-abitur-f5').innerHTML = ">";
+    }
+
+
+});
 
 // Select Profile End
 
@@ -332,6 +382,70 @@ itemsFocus.addEventListener('click', (event) => {
 });
 
 // Select Focus End
+
+// Abi Select START
+
+// Abi Fach 2
+const abiFach2SelectedFocus = document.querySelector("#select-abi2-selected");
+const abiFach2Focus = document.querySelector("#abitur-f2-items");
+
+abiFach2SelectedFocus.addEventListener('click', () => {
+    abiFach2Focus.style.display = abiFach2Focus.style.display === 'block' ? 'none' : 'block';
+});
+
+abiFach2Focus.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        abiFach2SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f2">></span>';
+        abiFach2Focus.style.display = 'none';
+    }
+});
+
+// Abi Fach 3
+const abiFach3SelectedFocus = document.querySelector("#select-abi3-selected");
+const abiFach3Focus = document.querySelector("#abitur-f3-items");
+
+abiFach3SelectedFocus.addEventListener('click', () => {
+    abiFach3Focus.style.display = abiFach3Focus.style.display === 'block' ? 'none' : 'block';
+});
+
+abiFach3Focus.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        abiFach3SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f3">></span>';
+        abiFach3Focus.style.display = 'none';
+    }
+});
+
+// Abi Fach 4
+const abiFach4SelectedFocus = document.querySelector("#select-abi4-selected");
+const abiFach4Focus = document.querySelector("#abitur-f4-items");
+
+abiFach4SelectedFocus.addEventListener('click', () => {
+    abiFach4Focus.style.display = abiFach4Focus.style.display === 'block' ? 'none' : 'block';
+});
+
+abiFach4Focus.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        abiFach4SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f4">></span>';
+        abiFach4Focus.style.display = 'none';
+    }
+});
+
+// Abi Fach 5
+const abiFach5SelectedFocus = document.querySelector("#select-abi5-selected");
+const abiFach5Focus = document.querySelector("#abitur-f5-items");
+
+abiFach5SelectedFocus.addEventListener('click', () => {
+    abiFach5Focus.style.display = abiFach5Focus.style.display === 'block' ? 'none' : 'block';
+});
+
+abiFach5Focus.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        abiFach5SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f5">></span>';
+        abiFach5Focus.style.display = 'none';
+    }
+});
+
+// ABI SELECT END
 
 document.querySelector("#save-settings-btn").addEventListener("click", () => {
     // Save Settings
