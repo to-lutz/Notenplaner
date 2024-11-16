@@ -28,6 +28,7 @@ router.post('/', function (req, res, next) {
                     isProfilfach: row.isProfilfach,
                     gewichtungSchrift: row.gewichtungSchriftlich,
                     gewichtungMuendl: row.gewichtungMuendlich,
+                    anforderungsbereich: row.anforderungsbereich
                 })
             }
             res.status(200).json({

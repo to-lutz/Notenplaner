@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     connection.connect();
 
 
-    connection.query('INSERT INTO notenplaner.faecher(`userid`, `fachname`, `farbe`, `isProfilfach`, `gewichtungSchriftlich`, `gewichtungMuendlich`) VALUES ("' + req.body.userid + '", "' + req.body.fachname + '", "' + req.body.farbe + '", "' + req.body.isprofilfach + '", ' + req.body.gewichtSchriftl + ', ' + req.body.gewichtMuendl +')', function (err, rows, fields) {
+    connection.query('INSERT INTO notenplaner.faecher(`userid`, `fachname`, `farbe`, `isProfilfach`, `gewichtungSchriftlich`, `gewichtungMuendlich`, `anforderungsbereich`) VALUES ("' + req.body.userid + '", "' + req.body.fachname + '", "' + req.body.farbe + '", "' + req.body.isprofilfach + '", ' + req.body.gewichtSchriftl + ', ' + req.body.gewichtMuendl + ', ' + req.body.anforderungsbereich + ')', function (err, rows, fields) {
         if (err) {
             throw err;
         }

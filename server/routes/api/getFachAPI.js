@@ -28,6 +28,7 @@ router.post('/', function (req, res, next) {
                 isProfilfach: rows[0].isProfilfach,
                 gewichtungSchrift: rows[0].gewichtungSchriftlich,
                 gewichtungMuendl: rows[0].gewichtungMuendlich,
+                anforderungsbereich: rows[0].anforderungsbereich,
                 date: new Date(),
             });
 
