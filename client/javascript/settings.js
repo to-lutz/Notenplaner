@@ -486,7 +486,6 @@ document.querySelector("#save-settings-btn").addEventListener("click", () => {
 });
 
 document.querySelector("#save-subject-btn").addEventListener("click", () => {
-    // TODO: Save Subject Settings
     let name = document.querySelector("#fachname").value;
     let color = document.querySelector("#subjectColor").value.replace("#", "");
     let profilfach = document.querySelector("#isProfilfachSwitch").checked ? 1 : 0;
