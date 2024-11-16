@@ -3,7 +3,16 @@ var router = express.Router();
 var mysql = require('mysql');
 var crypto = require('crypto');
 require('dotenv').config();
+var os = require('os');
+var nodemailer = require('nodemailer');
 
+var transport = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: process.env.MAIL,
+        pass: process.env.MAIL_PASS
+    }
+});
 
 /* POST create user. */
 router.post('/', function (req, res, next) {
@@ -46,7 +55,79 @@ router.post('/', function (req, res, next) {
 
         let userid = rows.insertId;
 
+        const ownUrl = req.protocol + "://" + req.get('host');
+
+        let mailHTML = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f4;
+                    margin: 0;
+                    padding: 0;
+                }
+                .container {
+                    max-width: 600px;
+                    margin: 20px auto;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    padding: 20px;
+                    text-align: center;
+                }
+                .btn {
+                    position: relative;
+                    padding: 15px 75px;
+                    margin: 5px;
+                    display: inline-block;
+                    font-size: 25px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    color: #fff;
+                    background: transparent;
+                    border: 1px solid transparent;
+                    font-family: "OceanWide", Arial, Helvetica, sans-serif;
+                    text-align: center;
+                    cursor: pointer;
+                }
+                .footer {
+                    font-size: 12px;
+                    color: #999999;
+                    margin-top: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h2>Notenplaner | Account-Verifizierung</h2>
+                <p>Vielen Dank, dass Sie sich registriert haben! Bitte klicken Sie auf den Button unten, um Ihren Account zu verifizieren:</p>
+                <a href="${ownUrl}/verify?token=${verificationKey}" class="btn">Account verifizieren</a>
+                <p>Wenn Sie diese Anfrage nicht gestellt haben, ignorieren Sie diese E-Mail.</p>
+                <div class="footer">
+                    Notenplaner
+                </div>
+            </div>
+        </body>
+        </html>`;
+
         // Send verification email
+        var mailOptions = {
+            from: "no-reply@notenplaner.de",
+            to: email,
+            subject: "Notenplaner | E-Mail verifizieren",
+            text: "Sehr geehrter Nutzer,\nBitte verifizieren sie ihre E-Mail über folgenden Link:\n\n" + ownUrl + "/verify?token=" + verificationKey + "\n\nMit freundlichen Grüßen,\nihr Notenplaner Team",
+            html: mailHTML
+        };
+
+        transport.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log('Error while sending mail: ' + error);
+            } else {
+                console.log('Message sent: %s', info.messageId);
+            }
+            transport.close();
+        });
 
         // Set default abitur faecher
         for (let i = 0; i < 5; i++) {
