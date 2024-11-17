@@ -466,6 +466,7 @@ abiFach2Focus.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         abiFach2SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f2">></span>';
         abiFach2Focus.style.display = 'none';
+        validateAbiturSelection();
     }
 });
 
@@ -481,6 +482,7 @@ abiFach3Focus.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         abiFach3SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f3">></span>';
         abiFach3Focus.style.display = 'none';
+        validateAbiturSelection();
     }
 });
 
@@ -496,6 +498,7 @@ abiFach4Focus.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         abiFach4SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f4">></span>';
         abiFach4Focus.style.display = 'none';
+        validateAbiturSelection();
     }
 });
 
@@ -511,8 +514,46 @@ abiFach5Focus.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         abiFach5SelectedFocus.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f5">></span>';
         abiFach5Focus.style.display = 'none';
+        validateAbiturSelection();
     }
 });
+
+// Abi Select Validation
+
+let erfuellteAFB = [false, false, false];
+let abiSelectValid = false;
+let abiSelectedFachIDs = [0, 0, 0, 0, 0];
+
+function validateAbiturSelection() {
+    erfuellteAFB = [false, false, false];
+
+    let elems = document.querySelectorAll(".select-abitur-selected");
+    for (let i = 0; i < elems.length; i++) {
+        let elem = elems[i]
+        let fach = elem.textContent.replace("<", "").replace(">", "").trim();
+        getFachByName(fach, (data) => {
+            if (data.anforderungsbereich == 1) erfuellteAFB[0] = true;
+            else if (data.anforderungsbereich == 2) erfuellteAFB[1] = true;
+            else if (data.anforderungsbereich == 3) erfuellteAFB[2] = true;
+
+            abiSelectedFachIDs[i] = data.id;
+
+            if (i == elems.length - 1) {
+                // Check if every anforderungsbereich fulfilled && no duplicates
+                if (erfuellteAFB.every((e) => e === true) && !hasDuplicates(abiSelectedFachIDs)) {
+                    abiSelectValid = true;
+                    document.querySelector(".save-abitur-btn").disabled = false;
+                } else {
+                    abiSelectValid = false;
+                    document.querySelector(".save-abitur-btn").disabled = true;
+                }
+            }
+        });
+
+    }
+}
+
+const hasDuplicates = (arr) => arr.length !== new Set(arr).size;
 
 // ABI SELECT END
 
@@ -544,6 +585,7 @@ document.querySelector("#save-subject-btn").addEventListener("click", () => {
 });
 
 document.querySelector(".save-abitur-btn").addEventListener("click", () => {
+    if (!abiSelectValid) return;
     for (let i = 1; i < 5; i++) {
         let elem = document.querySelector("#select-abi" + (i + 1) + "-selected");
         let fachname = elem.textContent.replace(">", "").replace("<", "").trim();
@@ -701,6 +743,28 @@ async function setSetting(name, value) {
             console.error(error.message);
         }
     }
+    apiCall();
+}
+
+async function getFachByName(fachname, callback) {
+    let apiCall = async () => {
+        // Get database data
+        let response = await fetch("/api/getfachbyname", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                    fachname: fachname
+                }
+            ),
+        });
+
+        response.json().then((data) => callback(data));
+    }
+
     apiCall();
 }
 
