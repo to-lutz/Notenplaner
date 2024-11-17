@@ -566,3 +566,13 @@ header {
     height: 50px;
     cursor: pointer;
 }
+
+.save-btn:disabled, .save-abitur-btn:disabled {
+    color: #d4ffd6;
+    background-color: #6da08c;
+    border-radius: 35px;
+    width: 350px;
+    height: 50px;
+    cursor: default;
+    opacity: 0.8;
+}
