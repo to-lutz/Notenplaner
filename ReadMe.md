@@ -17,15 +17,15 @@ Dieses Projekt ist ein **Notenplaner**, der speziell für die Anforderungen der 
 
 ## 💡 Technologien
 
-•	Backend: Node.js
-•	Datenbank: MySQL
+Backend: Node.js
+Datenbank: MySQL
 
 ## 🌟 Geplante Features
 
-•	Integration eines **Kalenders**, um Deadlines und Klausurtermine zu verwalten.
-•	Unterstützung für mehrere **Sprachen** (Deutsch, Englisch).
-•	Mobile **App-Version** (iOS/Android).
-•   Import von Daten aus **Schulverwaltungssystemen** (z. B. WebUntis).
+Integration eines **Kalenders**, um Deadlines und Klausurtermine zu verwalten.
+Unterstützung für mehrere **Sprachen** (Deutsch, Englisch).
+Mobile **App-Version** (iOS/Android).
+Import von Daten aus **Schulverwaltungssystemen** (z. B. WebUntis).
 
 ## 🤝 Mitwirken
 
@@ -34,15 +34,15 @@ Wenn du etwas verbessern möchtest, führe bitte folgende Schritte aus:
     
 1.	Fork das Repository.
 2.	Erstelle einen neuen Branch:
-    '''bash
+    ```bash
     git checkout -b feature/mein-feature
-    '''
+    ```
 3.	Nimm deine Änderungen vor und committe sie:
-    '''bash
+    ```bash
     git commit -m "Beschreibung meiner Änderungen"
-    '''
+    ```
 4.	Push deinen Branch:
-    '''bash
+    ```bash
     git push origin feature/mein-feature
-    '''
+    ```
 5.	Stelle eine Pull Request.
