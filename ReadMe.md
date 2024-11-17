@@ -17,15 +17,15 @@ Dieses Projekt ist ein **Notenplaner**, der speziell für die Anforderungen der 
 
 ## 💡 Technologien
 
-Backend: Node.js
-Datenbank: MySQL
+- Backend: Node.js
+- Datenbank: MySQL
 
 ## 🌟 Geplante Features
 
-Integration eines **Kalenders**, um Deadlines und Klausurtermine zu verwalten.
-Unterstützung für mehrere **Sprachen** (Deutsch, Englisch).
-Mobile **App-Version** (iOS/Android).
-Import von Daten aus **Schulverwaltungssystemen** (z. B. WebUntis).
+- Integration eines **Kalenders**, um Deadlines und Klausurtermine zu verwalten.
+- Unterstützung für mehrere **Sprachen** (Deutsch, Englisch).
+- Mobile **App-Version** (iOS/Android).
+- Import von Daten aus **Schulverwaltungssystemen** (z. B. WebUntis).
 
 ## 🤝 Mitwirken
 
