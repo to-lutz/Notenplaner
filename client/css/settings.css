@@ -27,6 +27,25 @@ header {
     height: 100px;
 }
 
+#header-open-menu-btn {
+    display: none;
+    color: #fff !important;
+}
+
+@media only screen and (max-width: 850px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .header-account-text, #settings-page-btn, #sign-out {
+        display: none !important;
+    }
+
+    #header-open-menu-btn {
+        display: inline-block;
+    }
+}
+
 .icon {
     display: flex;
     justify-content: center;
