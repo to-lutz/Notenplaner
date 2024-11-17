@@ -84,8 +84,10 @@ async function fetchSubjects() {
                             document.querySelector("#edit-subject-text").textContent = subject.name;
                             document.querySelector("#edit-subject-text").style.color = "#" + subject.farbe;
                             document.querySelector(".subject-edit-modal-name").value = subject.name;
-                            if (subject.isProfilfach) document.querySelector("#isProfilfachSwitch").checked = true;
-                            else document.querySelector("#isProfilfachSwitch").checked = false;
+                            if (subject.isProfilfach) {
+                                document.querySelector("#isProfilfachSwitch").checked = true;
+                            } else document.querySelector("#isProfilfachSwitch").checked = false;
+                            
                             document.querySelector("#subjectColor").value = "#" + subject.farbe;
                             document.querySelector("#gewichtungSchriftl").value = subject.gewichtungSchrift;
                             document.querySelector("#gewichtungMuendl").value = subject.gewichtungMuendl;
@@ -101,6 +103,9 @@ async function fetchSubjects() {
                         document.querySelector("#subject-item" + subject.id + "-name").style.color = "#" + subject.farbe;
                         if (subject.isProfilfach) {
                             document.querySelector("#subject-item" + subject.id + "-name").style.textDecoration = "underline";
+
+                            // Disable set Profilfach button on add subject
+                            document.querySelector("#add-isProfilfachSwitch").disabled = true;
 
                             // Abitur Selection set Subject 1
                             document.querySelector("#select-abi1-selected").innerHTML = subject.name + ' <span class="arrow arrow-select-closed" id="arrow-abitur-f1">></span>';
