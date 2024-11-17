@@ -700,6 +700,24 @@ document.querySelectorAll(".subject-add-modal-radio").forEach(elem => elem.addEv
     }
 }));
 
+document.querySelector("#save-add-subject-btn").addEventListener("click", (e) => {
+    let name = document.querySelector("#add-fachname").value;
+    let isProfilfach = document.querySelector("#add-isProfilfachSwitch").checked;
+    let color = document.querySelector("#add-subjectColor").value.replace("#", "");
+    let gewichtSchrift = document.querySelector("#gewichtungSchriftlAdd").value;
+    let gewichtMuendl = document.querySelector("#gewichtungMuendlAdd").value;
+    let afb1 = document.querySelector("#add-afb1").checked;
+    let afb2 = document.querySelector("#add-afb2").checked;
+    let afb3 = document.querySelector("#add-afb3").checked;
+    let afb = afb1 ? 1 : (afb2 ? 2 : (afb3 ? 3 : 0));
+
+    addFach(name, color, isProfilfach, gewichtSchrift, gewichtMuendl, afb, (data) => {
+        if (data.status == "Created") {
+            location.href = "/settings";
+        }
+    });
+});
+
 async function getSetting(name, callback) {
     let apiCall = async () => {
         // Get database data
@@ -856,6 +874,37 @@ async function setAbiturFach(id, fachname) {
             }
         });
 
+    }
+    apiCall();
+}
+
+async function addFach(name, farbe, isprofilfach, schrift, muendl, afb, callback) {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/addfach";
+        try {
+            let resp = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        fachname: name,
+                        farbe: farbe,
+                        isprofilfach: isprofilfach ? 1 : 0,
+                        gewichtSchriftl: schrift,
+                        gewichtMuendl: muendl,
+                        anforderungsbereich: afb
+                    }
+                ),
+            });
+
+            resp.json().then((data) => callback(data));
+        } catch (error) {
+            console.error(error.message);
+        }
     }
     apiCall();
 }
