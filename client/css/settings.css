@@ -193,13 +193,13 @@ header {
     cursor: pointer;
 }
 
-.fa-close-subj-edit {
+.fa-close-subj-edit, .fa-close-subj-add {
     color: #fff !important;
     cursor: pointer;
     width: 25px;
 }
 
-.subject-edit-wrapper {
+.subject-edit-wrapper, .subject-add-wrapper {
     visibility: hidden;
     position: absolute;
     top: 0;
@@ -212,7 +212,7 @@ header {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
-.subject-edit {
+.subject-edit, .subject-add {
     background-color: #292929;
     width: max(500px, 20%);
     height: 550px;
@@ -220,36 +220,36 @@ header {
     border-radius: 35px;
 }
 
-.subject-edit-modal-header {
+.subject-edit-modal-header, .subject-add-modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.subject-edit-modal-header-text {
+.subject-edit-modal-header-text, .subject-add-modal-header-text {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     font-size: 32px;
     text-align: center;
 }
 
-.subject-edit-modal-main {
+.subject-edit-modal-main, .subject-add-modal-main {
     display: flex;
     flex-direction: column;
     padding: 20px;
 }
 
-.subject-edit-modal-label {
+.subject-edit-modal-label, .subject-add-modal-label {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
 }
 
-.subject-edit-modal-sublabel {
+.subject-edit-modal-sublabel, .subject-add-modal-sublabel {
     color: #aaaaaa;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
 }
 
-.subject-edit-modal-input {
+.subject-edit-modal-input, .subject-add-modal-input {
     height: 35px;
     background: rgba(255, 255, 255, 0.22);
     border-radius: 8px;
@@ -264,51 +264,51 @@ header {
     text-indent: 10px;
 }
 
-.subject-edit-modal-input:focus {
+.subject-edit-modal-input:focus, .subject-add-modal-input:focus {
     outline: none;
 }
 
-.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap, .subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap {
+.subject-edit-modal-profilfach-wrap, .subject-edit-modal-color-wrap, .subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap, .subject-add-modal-profilfach-wrap, .subject-add-modal-color-wrap, .subject-add-modal-weight-wrap, .subject-add-modal-afb-wrap {
     margin-top: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap {
+.subject-edit-modal-weight-wrap, .subject-edit-modal-afb-wrap, .subject-add-modal-weight-wrap, .subject-add-modal-afb-wrap {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.subject-edit-modal-weight-value-subwrap {
+.subject-edit-modal-weight-value-subwrap, .subject-add-modal-weight-value-subwrap {
     display: flex;
     flex-direction: column;
     width: 50%;
 }
 
-.subject-edit-modal-afb-subwrap {
+.subject-edit-modal-afb-subwrap, .subject-add-modal-afb-subwrap {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
 }
 
-.subject-edit-modal-afb-value-wrap {
+.subject-edit-modal-afb-value-wrap, .subject-add-modal-afb-value-wrap {
     margin: 5px 0;
 }
 
-.subject-edit-modal-weight-value-wrap {
+.subject-edit-modal-weight-value-wrap, .subject-add-modal-weight-value-wrap {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-top: 10px;
 }
 
-.subject-edit-modal-checkbox {
+.subject-edit-modal-checkbox, .subject-add-modal-checkbox {
     cursor: pointer;
 }
 
-.subject-edit-modal-color[type='color'] {
+.subject-edit-modal-color[type='color'], .subject-add-modal-color[type='color'] {
     padding: 0;
     width: 150%;
     height: 150%;
@@ -322,15 +322,15 @@ header {
     border-radius: 50%;
 }
 
-.subject-edit-modal-slider {
+.subject-edit-modal-slider, .subject-add-modal-slider {
     color: #275EFE;
 }
 
-.subject-edit-modal-inputNum {
+.subject-edit-modal-inputNum, .subject-add-modal-inputNum {
     width: 90%;
 }
 
-.subject-edit-modal-btn {
+.subject-edit-modal-btn, .subject-add-modal-btn {
     margin-top: 25px;
     display: flex;
     justify-content: center;

@@ -63,20 +63,23 @@
                             <label for="subject-edit-afb" class="subject-edit-modal-label">Anforderungsbereich</label>
                             <div class="subject-edit-modal-afb-subwrap">
                                 <div class="subject-edit-modal-afb-value-wrap">
-                                    <label for="afb-1" class="subject-edit-modal-sublabel">Sprachlich-Literarisch-K&uuml;nstlerisch (AF I)</label>
+                                    <label for="afb-1"
+                                        class="subject-edit-modal-sublabel">Sprachlich-Literarisch-K&uuml;nstlerisch (AF
+                                        I)</label>
                                     <input type="radio" class="subject-edit-modal-afb1 subject-edit-modal-radio"
                                         id="afb1">
                                 </div>
                                 <div class="subject-edit-modal-afb-value-wrap">
-                                    <label for="afb-2"
-                                        class="subject-edit-modal-sublabel">Gesellschaftswissenschaftlich (AF II)</label>
+                                    <label for="afb-2" class="subject-edit-modal-sublabel">Gesellschaftswissenschaftlich
+                                        (AF II)</label>
                                     <input type="radio" class="subject-edit-modal-afb2 subject-edit-modal-radio"
                                         id="afb2">
                                 </div>
 
                                 <div class="subject-edit-modal-afb-value-wrap">
                                     <label for="afb-3"
-                                        class="subject-edit-modal-sublabel">Mathematisch-Naturwissenschaftlich-Technisch (AF III)</label>
+                                        class="subject-edit-modal-sublabel">Mathematisch-Naturwissenschaftlich-Technisch
+                                        (AF III)</label>
                                     <input type="radio" class="subject-edit-modal-afb3 subject-edit-modal-radio"
                                         id="afb3">
                                 </div>
@@ -91,6 +94,82 @@
                 </div>
             </div>
         </div>
+
+        <div class="subject-add-wrapper">
+            <div class="subject-add">
+                <div class="subject-add-modal-header">
+                    <div class="subject-add-modal-header-text" id="add-subject-text">?</div>
+                    <i class="fa-solid fa-x fa-lg fa-close-subj-add"></i>
+                </div>
+                <div class="subject-add-modal-main">
+                    <label for="fachname" class="subject-add-modal-label">Name des Faches:</label>
+                    <input type="text" class="subject-add-modal-name subject-add-modal-input" id="fachname"
+                        placeholder="Name des Faches">
+                    <div class="subject-add-modal-profilfach-wrap checkbox-wrapper-14">
+                        <label for="isProfilfachSwitch" class="subject-add-modal-label">Profilfach</label>
+                        <input type="checkbox" class="subject-add-modal-checkbox switch" id="isProfilfachSwitch">
+                    </div>
+                    <div class="subject-add-modal-color-wrap">
+                        <label for="color" class="subject-add-modal-label">Farbe</label>
+                        <div class="cp-wrapper">
+                            <input type="color" class="subject-add-modal-color" id="subjectColor">
+                        </div>
+                    </div>
+                    <div class="subject-add-modal-weight-wrap">
+                        <label for="weightSlider" class="subject-add-modal-label">Gewichtung</label>
+                        <!-- <input type="range" min="0" max="100" value="50" step="5" class="subject-add-modal-slider" id="weightSlider"> -->
+                        <div class="subject-add-modal-weight-value-wrap">
+                            <div class="subject-add-modal-weight-value-subwrap">
+                                <label for="gewichtungSchriftl" class="subject-add-modal-sublabel">Schriftlich</label>
+                                <input type="number"
+                                    class="subject-add-modal-weightWritten subject-add-modal-input subject-add-modal-inputNum"
+                                    id="gewichtungSchriftl" placeholder="Gewichtung Schriftlich" value="50" min="0"
+                                    max="100" step="5">
+                            </div>
+                            <div class="subject-add-modal-weight-value-subwrap">
+                                <label for="gewichtungSchriftl" class="subject-add-modal-sublabel">M&uuml;ndlich</label>
+                                <input type="number"
+                                    class="subject-add-modal-weightOral subject-add-modal-input subject-add-modal-inputNum"
+                                    id="gewichtungMuendl" placeholder="Gewichtung M&uuml;ndlich" value="50" min="0"
+                                    max="100" step="5">
+                            </div>
+                        </div>
+                        <div class="subject-add-modal-afb-wrap">
+                            <label for="subject-add-afb" class="subject-add-modal-label">Anforderungsbereich</label>
+                            <div class="subject-add-modal-afb-subwrap">
+                                <div class="subject-add-modal-afb-value-wrap">
+                                    <label for="afb-1"
+                                        class="subject-add-modal-sublabel">Sprachlich-Literarisch-K&uuml;nstlerisch (AF
+                                        I)</label>
+                                    <input type="radio" class="subject-add-modal-afb1 subject-add-modal-radio"
+                                        id="afb1">
+                                </div>
+                                <div class="subject-add-modal-afb-value-wrap">
+                                    <label for="afb-2" class="subject-add-modal-sublabel">Gesellschaftswissenschaftlich
+                                        (AF II)</label>
+                                    <input type="radio" class="subject-add-modal-afb2 subject-add-modal-radio"
+                                        id="afb2">
+                                </div>
+
+                                <div class="subject-add-modal-afb-value-wrap">
+                                    <label for="afb-3"
+                                        class="subject-add-modal-sublabel">Mathematisch-Naturwissenschaftlich-Technisch
+                                        (AF III)</label>
+                                    <input type="radio" class="subject-add-modal-afb3 subject-add-modal-radio"
+                                        id="afb3">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="subject-add-modal-btn" id="subject-add-save-button">
+                        <button class="save-btn" id="save-subject-btn">Speichern</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="header-wrapper">
             <header>
                 <div class="header-left-side">
