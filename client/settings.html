@@ -98,7 +98,7 @@
         <div class="subject-add-wrapper">
             <div class="subject-add">
                 <div class="subject-add-modal-header">
-                    <div class="subject-add-modal-header-text" id="add-subject-text">?</div>
+                    <div class="subject-add-modal-header-text" id="add-subject-text">Fach hinzuf&uuml;gen</div>
                     <i class="fa-solid fa-x fa-lg fa-close-subj-add"></i>
                 </div>
                 <div class="subject-add-modal-main">
@@ -120,17 +120,17 @@
                         <!-- <input type="range" min="0" max="100" value="50" step="5" class="subject-add-modal-slider" id="weightSlider"> -->
                         <div class="subject-add-modal-weight-value-wrap">
                             <div class="subject-add-modal-weight-value-subwrap">
-                                <label for="gewichtungSchriftl" class="subject-add-modal-sublabel">Schriftlich</label>
+                                <label for="gewichtungSchriftlAdd" class="subject-add-modal-sublabel">Schriftlich</label>
                                 <input type="number"
                                     class="subject-add-modal-weightWritten subject-add-modal-input subject-add-modal-inputNum"
-                                    id="gewichtungSchriftl" placeholder="Gewichtung Schriftlich" value="50" min="0"
+                                    id="gewichtungSchriftlAdd" placeholder="Gewichtung Schriftlich" value="50" min="0"
                                     max="100" step="5">
                             </div>
                             <div class="subject-add-modal-weight-value-subwrap">
-                                <label for="gewichtungSchriftl" class="subject-add-modal-sublabel">M&uuml;ndlich</label>
+                                <label for="gewichtungMuendlAdd" class="subject-add-modal-sublabel">M&uuml;ndlich</label>
                                 <input type="number"
                                     class="subject-add-modal-weightOral subject-add-modal-input subject-add-modal-inputNum"
-                                    id="gewichtungMuendl" placeholder="Gewichtung M&uuml;ndlich" value="50" min="0"
+                                    id="gewichtungMuendlAdd" placeholder="Gewichtung M&uuml;ndlich" value="50" min="0"
                                     max="100" step="5">
                             </div>
                         </div>
@@ -192,6 +192,8 @@
                 <div class="setting-wrapper">
                     <div class="subjects-wrap">
                         <div class="subject-wrap-header">Fächer</div>
+                        <div class="subject-wrap-subjects"></div>
+                        <button class="subject-add-subj-btn" id="subject-add-subj-btn">Fach hinzuf&uuml;gen</button>
                     </div>
                     <div class="general-wrap">
                         <div class="general-wrap-header">Allgemeine Einstellungen</div>

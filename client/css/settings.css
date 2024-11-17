@@ -152,6 +152,10 @@ header {
     align-items: center;
 }
 
+.subject-wrap-subjects {
+    margin: 10px 0;
+}
+
 .subject-wrap-header, .general-wrap-header, .abitur-wrap-header {
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     color: #cacaca;
@@ -557,7 +561,7 @@ header {
     justify-content: center;
 }
 
-.save-btn, .save-abitur-btn {
+.save-btn, .save-abitur-btn, .subject-add-subj-btn {
     color: #fff;
     background-color: #27812e;
     border: none;
@@ -567,7 +571,11 @@ header {
     cursor: pointer;
 }
 
-.save-btn:disabled, .save-abitur-btn:disabled {
+.subject-add-subj-btn {
+    background-color: #275EFE;
+}
+
+.save-btn:disabled, .save-abitur-btn:disabled, .subject-add-subj-btn:disabled {
     color: #d4ffd6;
     background-color: #6da08c;
     border-radius: 35px;

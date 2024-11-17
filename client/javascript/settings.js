@@ -79,7 +79,7 @@ async function fetchSubjects() {
                         elem.classList.add("subject-item-wrap");
                         elem.id = "subject-item" + subject.id + "-wrap";
                         elem.innerHTML = '<span class="subject-item-name" id="subject-item' + subject.id + '-name">' + subject.name + '</span><div class="subject-item-management"><i class="fa-solid fa-pen" id="subject-item' + subject.id + '-edit"></i><i class="fa-solid fa-trash-can" id="subject-item' + subject.id + '-delete"></i></div>';
-                        document.querySelector(".subjects-wrap").appendChild(elem);
+                        document.querySelector(".subject-wrap-subjects").appendChild(elem);
                         document.querySelector("#subject-item" + subject.id + "-edit").addEventListener("click", () => {
                             document.querySelector("#edit-subject-text").textContent = subject.name;
                             document.querySelector("#edit-subject-text").style.color = "#" + subject.farbe;
@@ -598,6 +598,14 @@ document.querySelector(".fa-close-subj-edit").addEventListener("click", () => {
     document.querySelector(".subject-edit-wrapper").style.visibility = "hidden";
 });
 
+document.querySelector(".fa-close-subj-add").addEventListener("click", () => {
+    document.querySelector(".subject-add-wrapper").style.visibility = "hidden";
+});
+
+document.querySelector(".subject-add-subj-btn").addEventListener("click", () => {
+    document.querySelector(".subject-add-wrapper").style.visibility = "visible";
+});
+
 // document.querySelector("#gewichtungSchriftl").addEventListener("change", (e) => {
 //     let gewichtSchriftl = document.querySelector("#gewichtungSchriftl");
 //     let gewichtMuendl = document.querySelector("#gewichtungMuendl");
@@ -648,8 +656,43 @@ document.querySelector("#gewichtungMuendl").addEventListener("input", (e) => {
     gewichtSchriftl.value = 100 - muendl;
 });
 
+document.querySelector("#gewichtungSchriftlAdd").addEventListener("input", (e) => {
+    let gewichtSchriftlAdd = document.querySelector("#gewichtungSchriftlAdd");
+    let gewichtMuendlAdd = document.querySelector("#gewichtungMuendlAdd");
+
+    let schrift = parseInt(gewichtSchriftlAdd.value) || 0;
+
+    if (schrift > 100) schrift = 100;
+    if (schrift < 0) schrift = 0;
+
+    gewichtSchriftlAdd.value = schrift;
+    gewichtMuendlAdd.value = 100 - schrift;
+});
+
+document.querySelector("#gewichtungMuendlAdd").addEventListener("input", (e) => {
+    let gewichtSchriftlAdd = document.querySelector("#gewichtungSchriftlAdd");
+    let gewichtMuendlAdd = document.querySelector("#gewichtungMuendlAdd");
+
+    let muendl = parseInt(gewichtMuendlAdd.value) || 0;
+
+    if (muendl > 100) muendl = 100;
+    if (muendl < 0) muendl = 0;
+
+    gewichtMuendlAdd.value = muendl;
+    gewichtSchriftlAdd.value = 100 - muendl;
+});
+
 document.querySelectorAll(".subject-edit-modal-radio").forEach(elem => elem.addEventListener("click", (e) => {
     let list = document.querySelectorAll(".subject-edit-modal-radio");
+    for (let item of list) {
+        if (item.id != e.target.id) {
+            item.checked = false;
+        }
+    }
+}));
+
+document.querySelectorAll(".subject-add-modal-radio").forEach(elem => elem.addEventListener("click", (e) => {
+    let list = document.querySelectorAll(".subject-add-modal-radio");
     for (let item of list) {
         if (item.id != e.target.id) {
             item.checked = false;
