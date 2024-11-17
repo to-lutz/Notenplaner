@@ -46,6 +46,8 @@ header {
     }
 }
 
+/* TODO: Menu button click functionality */
+
 .icon {
     display: flex;
     justify-content: center;
