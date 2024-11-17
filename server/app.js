@@ -1,3 +1,14 @@
+/* .env Scheme 
+DB_HOST=
+DB_USER=
+DB_PASS=
+MAIL=
+MAIL_PASS=
+API_KEY=
+API_MAX_REQUESTS=
+API_RATE_LIMIT_TIME_MINUTES=
+*/
+
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
