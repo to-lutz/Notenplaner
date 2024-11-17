@@ -30,6 +30,7 @@ var verifyAPIRouter = require('./routes/api/verifyAPI');
 var notendurchschnittRouter = require('./routes/api/noten/durchschnitt');
 var topsubjectsRouter = require('./routes/api/noten/topsubjects');
 var getNotenRouter = require('./routes/api/noten/getNotenAPI');
+var addNoteRouter = require('./routes/api/addFachAPI');
 
 var rateLimit = require('express-rate-limit');
 
@@ -79,5 +80,6 @@ app.use('/verify', verifyAPIRouter);
 app.use('/api/noten/durchschnitt', notendurchschnittRouter);
 app.use('/api/noten/topsubjects', topsubjectsRouter);
 app.use('/api/noten/getnoten', getNotenRouter);
+app.use('/api/noten/addnote', addNoteRouter);
 
 module.exports = app;
