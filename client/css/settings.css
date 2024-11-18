@@ -30,23 +30,8 @@ header {
 #header-open-menu-btn {
     display: none;
     color: #fff !important;
+    z-index: 101 !important;
 }
-
-@media only screen and (max-width: 850px) {
-    header {
-        padding: 0 20px;
-    }
-
-    .header-account-text, #settings-page-btn, #sign-out {
-        display: none !important;
-    }
-
-    #header-open-menu-btn {
-        display: inline-block;
-    }
-}
-
-/* TODO: Menu button click functionality */
 
 .icon {
     display: flex;
@@ -604,4 +589,45 @@ header {
     height: 50px;
     cursor: default;
     opacity: 0.8;
+}
+
+/* Last */
+@media only screen and (max-width: 850px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .header-select-semester {
+        display: none;
+    }
+
+    .header-right-side {
+        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        background-color: #2B2D42 !important;
+        z-index: 100 !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding: 100px 0 100px 20px !important; /* Height of header */
+        width: 300px !important;
+    }
+
+    .header-account-text {
+        display: none;
+        margin-left: 0 !important;
+        padding: 15px 0;
+    }
+
+    #sign-out {
+        padding-top: 15px;
+    }
+
+    #header-open-menu-btn {
+        display: inline-block;
+    }
 }
