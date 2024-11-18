@@ -488,6 +488,8 @@ header {
 
 .general-item-wrap, #abitur-item-wrap {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .general-select-profile, .general-select-focus, .abitur-select-fach {
@@ -572,11 +574,10 @@ header {
     background-color: #27812e;
     border: none;
     border-radius: 35px;
-    width: 350px;
+    width: min(350px, 60vw);
     height: 50px;
     cursor: pointer;
 }
-
 .subject-add-subj-btn {
     background-color: #275EFE;
 }
