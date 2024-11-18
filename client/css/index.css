@@ -27,6 +27,12 @@ header {
     height: 100px;
 }
 
+#header-open-menu-btn {
+    display: none;
+    color: #fff !important;
+    z-index: 101 !important;
+}
+
 .icon {
     display: flex;
     justify-content: center;
@@ -186,6 +192,7 @@ header {
     color: #fff;
     font-size: 35px;
     margin: 0 50px;
+    text-align: center;
 }
 
 .title-wrapper {
@@ -194,6 +201,16 @@ header {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+}
+
+@media only screen and (max-width: 820px) {
+    .title-wrapper {
+        height: 800px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: column;
+    }
 }
 
 .notendurchschnitt-wrapper {
@@ -256,6 +273,13 @@ header {
     width: 100%;
 }
 
+@media only screen and (max-width: 820px) {
+    .center-notification-wrapper{
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
 .notification-wrapper-header-text {
     text-decoration: underline;
 }
@@ -294,4 +318,43 @@ header {
 
 .no-top-subjects {
     text-indent: none;
+}
+
+/* Last */
+@media only screen and (max-width: 850px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .header-right-side {
+        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        background-color: #2B2D42 !important;
+        z-index: 100 !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding: 100px 0 100px 20px !important; /* Height of header */
+        width: 300px !important;
+    }
+
+    .header-select-semester {
+        display: none;
+        position: fixed !important;
+        right: 65px !important;
+        top: 85px !important;
+        z-index: 101 !important;
+    }
+
+    .pagebtn {
+        margin-top: 50px !important;
+    }
+
+    #header-open-menu-btn {
+        display: inline-block;
+    }
 }

@@ -320,3 +320,22 @@ document.addEventListener('click', (event) => {
 document.querySelector("#settings-page-btn").addEventListener('click', () => {
     window.location.href = "/settings";
 });
+
+// Reponsive Navbar
+
+document.querySelector("#header-open-menu-btn").addEventListener("click", () => {
+    let headermenu = document.querySelector(".header-right-side");
+    let clickmenu = document.querySelector("#header-open-menu-btn");
+    let selectSemester = document.querySelector(".header-select-semester");
+    if (clickmenu.classList.contains("fa-bars")) {
+        headermenu.style.display = "flex";
+        selectSemester.style.display = "block";
+        clickmenu.classList.remove("fa-bars");
+        clickmenu.classList.add("fa-x");
+    } else {
+        headermenu.style.display = "none";
+        selectSemester.style.display = "none";
+        clickmenu.classList.remove("fa-x");
+        clickmenu.classList.add("fa-bars");
+    }
+});

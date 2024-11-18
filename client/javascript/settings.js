@@ -939,3 +939,22 @@ async function setSubjectSetting(name, value, fachid) {
     }
     apiCall();
 }
+
+// Reponsive Navbar
+
+document.querySelector("#header-open-menu-btn").addEventListener("click", () => {
+    let headermenu = document.querySelector(".header-right-side");
+    let clickmenu = document.querySelector("#header-open-menu-btn");
+    let headerAccText = document.querySelector(".header-account-text");
+    if (clickmenu.classList.contains("fa-bars")) {
+        headermenu.style.display = "flex";
+        headerAccText.style.display = "block";
+        clickmenu.classList.remove("fa-bars");
+        clickmenu.classList.add("fa-x");
+    } else {
+        headermenu.style.display = "none";
+        headerAccText.style.display = "none";
+        clickmenu.classList.remove("fa-x");
+        clickmenu.classList.add("fa-bars");
+    }
+});

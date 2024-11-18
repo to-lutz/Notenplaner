@@ -27,6 +27,12 @@ header {
     height: 100px;
 }
 
+#header-open-menu-btn {
+    display: none;
+    color: #fff !important;
+    z-index: 101 !important;
+}
+
 .icon {
     display: flex;
     justify-content: center;
@@ -111,7 +117,7 @@ header {
     align-items: flex-start;
 }
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1600px) {
     .title-wrapper {
         height: calc(100vh - 100px);
     }
@@ -482,6 +488,8 @@ header {
 
 .general-item-wrap, #abitur-item-wrap {
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .general-select-profile, .general-select-focus, .abitur-select-fach {
@@ -491,7 +499,7 @@ header {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     height: 55px;
-    width: 500px;
+    width: min(500px, 70vw);
     border-radius: 25px;
     text-indent: 10px;
 }
@@ -566,11 +574,10 @@ header {
     background-color: #27812e;
     border: none;
     border-radius: 35px;
-    width: 350px;
+    width: min(350px, 60vw);
     height: 50px;
     cursor: pointer;
 }
-
 .subject-add-subj-btn {
     background-color: #275EFE;
 }
@@ -583,4 +590,45 @@ header {
     height: 50px;
     cursor: default;
     opacity: 0.8;
+}
+
+/* Last */
+@media only screen and (max-width: 850px) {
+    header {
+        padding: 0 20px;
+    }
+
+    .header-select-semester {
+        display: none;
+    }
+
+    .header-right-side {
+        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        height: 100vh !important;
+        overflow-y: auto !important;
+        background-color: #2B2D42 !important;
+        z-index: 100 !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding: 100px 0 100px 20px !important; /* Height of header */
+        width: 300px !important;
+    }
+
+    .header-account-text {
+        display: none;
+        margin-left: 0 !important;
+        padding: 15px 0;
+    }
+
+    #sign-out {
+        padding-top: 15px;
+    }
+
+    #header-open-menu-btn {
+        display: inline-block;
+    }
 }
