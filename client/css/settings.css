@@ -497,7 +497,7 @@ header {
     color: #fff;
     font-family: 'OceanWide', Arial, Helvetica, sans-serif;
     height: 55px;
-    width: 500px;
+    width: min(500px, 70vw);
     border-radius: 25px;
     text-indent: 10px;
 }
