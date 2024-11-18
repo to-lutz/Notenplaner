@@ -20,6 +20,8 @@ router.post('/', function (req, res, next) {
         if (rows.length != 0) {
             let id = rows[0].userid;
 
+            // TODO Durchschnitt with oral and written grades
+
             let total = 0;
             let amt = rows.length;
             for (row in rows) {
