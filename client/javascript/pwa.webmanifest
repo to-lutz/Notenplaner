@@ -1,0 +1,16 @@
+{
+    "name": "Notenplaner",
+    "short_name": "Notenplaner",
+    "description": "Ein Notenplaner fuer die gymnasiale Oberstufe der beruflichen Gymnasien in Baden-Wuerttemberg",
+    "icons": [
+        {
+            "src": "/images/favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "display": "fullscreen",
+    "theme_color": "#2B2D42",
+    "background_color": "#151625"
+}
