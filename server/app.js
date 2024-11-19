@@ -21,6 +21,7 @@ var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var registerRouter = require('./routes/register');
 var settingsRouter = require('./routes/settings');
+var gradesRouter = require('./routes/grades');
 
 var loginAPIRouter = require('./routes/api/loginAPI');
 var registerAPIRouter = require('./routes/api/registerAPI');
@@ -68,6 +69,7 @@ app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/settings', settingsRouter);
+app.use('/grades', gradesRouter);
 
 // API Routes
 app.use('/api', apiKeyMiddleware, limiter);
