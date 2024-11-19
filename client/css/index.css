@@ -570,7 +570,7 @@ header {
         z-index: 101 !important;
     }
 
-    .pagebtn {
+    .pagebtn:first-child {
         margin-top: 50px !important;
     }
 

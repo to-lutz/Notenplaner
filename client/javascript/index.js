@@ -419,6 +419,7 @@ async function fetchSubjects() {
             response.json().then((data) => {
                 if (data.status == "Found") {
                     data.subjects.sort((a, b) => b.isProfilfach - a.isProfilfach);
+                    document.querySelector("#add-grade-fach-items").innerHTML = "";
                     for (let subject of data.subjects) {
                             // Add to add grade selection
                             let addgradewrap = document.querySelector("#add-grade-fach-items");
@@ -473,6 +474,10 @@ document.addEventListener('click', (event) => {
 
 document.querySelector("#settings-page-btn").addEventListener('click', () => {
     window.location.href = "/settings";
+});
+
+document.querySelector("#grades-page-btn").addEventListener('click', () => {
+    window.location.href = "/grades";
 });
 
 // Reponsive Navbar
