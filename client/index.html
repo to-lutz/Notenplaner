@@ -19,6 +19,45 @@
     <!-- <div class="icon">
         <i class="fa-regular fa-paper-plane fa-2xl"></i>
     </div> -->
+    <div class="grades-add-wrapper">
+        <div class="grades-add">
+            <div class="grades-add-modal-header">
+                <div class="grades-add-modal-header-text" id="add-subject-text">Note hinzuf&uuml;gen</div>
+                <i class="fa-solid fa-x fa-lg fa-close-grade-add"></i>
+            </div>
+            <div class="grades-add-modal-weight-wrap">
+
+                <label for="add-grade-fach-select" class="grades-add-modal-label">Fach:</label>
+                <div class="add-grade-fach-select" id="add-grade-fach-select">
+                    <div class="select-add-grade-fach-selected" id="select-add-grade-fach-selected">
+                        Fach ausw&auml;hlen
+                        <span class="arrow-add-grade arrow-select-closed" id="arrow-add-grade-fach">></span>
+                    </div>
+                    <div class="add-grade-fach-select-items" id="add-grade-fach-items">
+                    </div>
+                </div>
+
+                <label for="description" class="grades-add-modal-label">Beschreibung:</label>
+                <input type="text" class="grades-add-modal-name grades-add-modal-input" id="description"
+                    placeholder="Beschreibung (Schriftlich/Muendlich)">
+                <label for="add_grade_notenpunkte" class="grades-add-modal-label">Notenpunkte</label>
+                <!-- <input type="range" min="0" max="100" value="50" step="5" class="grades-add-modal-slider" id="weightSlider"> -->
+                <div class="grades-add-modal-weight-value-wrap">
+                    <div class="grades-add-modal-weight-value-subwrap">
+                        <input type="number"
+                            class="grades-add-modal-weightWritten grades-add-modal-input grades-add-modal-inputNum"
+                            id="add_grade_notenpunkte" placeholder="Gewichtung Schriftlich" value="0" min="0" max="15"
+                            step="1">
+                    </div>
+                </div>
+
+                <div class="grades-add-modal-btn" id="grades-add-save-button">
+                    <button class="save-btn" id="save-add-grade-btn">Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="wrapper">
         <div class="header-wrapper">
             <header>
@@ -79,6 +118,7 @@
                     <p class="notification-wrapper-subheader-text">Neue Noteneinträge</p>
                     <ol class="new-grades-list">
                     </ol>
+                    <button class="grades-add-grade-btn" id="grades-add-grade-btn">Note hinzuf&uuml;gen</button>
                 </div>
             </div>
             <div class="next-exam-wrapper">

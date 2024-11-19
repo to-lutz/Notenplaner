@@ -31,6 +31,7 @@ if (sessionID == null || sessionID.length == 0) {
                     fetchDurchschnitt();
                     fetchHighestSubjects();
                     fetchGrades();
+                    fetchSubjects();
                 } else {
                     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                     window.location.href = "/login";
@@ -76,6 +77,50 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
     }
     apiCall();
 });
+
+// Add Note Notenpunkte Verification
+document.querySelector("#add_grade_notenpunkte").addEventListener("input", (e) => {
+    let np = e.target;
+
+    let notenval = parseInt(np.value) || 0;
+
+    if (notenval > 15) notenval = 15;
+    if (notenval < 0) notenval = 0;
+
+    np.value = notenval;
+});
+
+// Add Note Fach Selection
+// Select Menu
+const selectedNote = document.querySelector('.select-add-grade-fach-selected');
+const itemsNote = document.querySelector('.add-grade-fach-select-items');
+
+selectedNote.addEventListener('click', () => {
+    itemsNote.style.display = itemsNote.style.display === 'block' ? 'none' : 'block';
+});
+
+itemsNote.addEventListener('click', (event) => {
+    if (event.target.tagName === 'DIV') {
+        selectedNote.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
+        itemsNote.style.display = 'none';
+    }
+});
+
+
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('.add-grade-fach-select')) {
+        itemsNote.style.display = 'none';
+    }
+    if (itemsNote.style.display === 'block') {
+        selectedNote.style.borderColor = "rgb(46, 113, 182)";
+        document.querySelector('.arrow-add-grade').innerHTML = "<";
+    } else {
+        selectedNote.style.borderColor = "#494949";
+        document.querySelector('.arrow-add-grade').innerHTML = ">";
+    }
+});
+
+// Select Menu End
 
 // Notenpunkte Durchschnittskreis
 async function load_np_average(val) {
@@ -283,6 +328,44 @@ let fetchGrades = async () => {
         console.error(error.message);
     }
 }
+
+async function fetchSubjects() {
+    let apiCall = async () => {
+        // Get database data
+        const url = "/api/getfaecher";
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID
+                    }
+                ),
+            });
+
+            response.json().then((data) => {
+                if (data.status == "Found") {
+                    data.subjects.sort((a, b) => b.isProfilfach - a.isProfilfach);
+                    for (let subject of data.subjects) {
+                            // Add to add grade selection
+                            let addgradewrap = document.querySelector("#add-grade-fach-items");
+                            let elem = document.createElement("div");
+                            elem.id = "subjectID-" + subject.id;
+                            elem.innerHTML = subject.name;
+                            addgradewrap.appendChild(elem);
+                        }
+                    }
+                });
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+    apiCall();
+}
+
 // Select Menu
 const selected = document.querySelector('.select-semester-selected');
 const items = document.querySelector('.semester-select-items');
@@ -298,6 +381,7 @@ items.addEventListener('click', (event) => {
         fetchDurchschnitt();
         fetchHighestSubjects();
         fetchGrades();
+        fetchSubjects();
     }
 });
 
