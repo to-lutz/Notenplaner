@@ -91,7 +91,7 @@ document.querySelector("#add_grade_notenpunkte").addEventListener("input", (e) =
 });
 
 // Add Note Fach Selection
-// Select Menu
+// Select Menu Note
 const selectedNote = document.querySelector('.select-add-grade-fach-selected');
 const itemsNote = document.querySelector('.add-grade-fach-select-items');
 
@@ -101,11 +101,59 @@ selectedNote.addEventListener('click', () => {
 
 itemsNote.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
-        selectedNote.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
+        selectedNote.innerHTML = event.target.textContent + ' <span class="arrow-add-grade arrow-select-closed">></span>';
+        selectedNote.setAttribute("fachname", event.target.textContent);
         itemsNote.style.display = 'none';
     }
 });
 
+// Select Menu Note End
+
+document.querySelector(".fa-close-grade-add").addEventListener("click", () => {
+    document.querySelector(".grades-add-wrapper").style.visibility = "hidden";
+});
+
+document.querySelector(".grades-add-grade-btn").addEventListener("click", () => {
+    document.querySelector(".grades-add-wrapper").style.visibility = "visible";
+});
+
+document.querySelector("#save-add-grade-btn").addEventListener("click", (e) => {
+    let fachSelect = selectedNote;
+    let description = document.querySelector("#description");
+    let np = document.querySelector("#add_grade_notenpunkte").value;
+    if (fachSelect.getAttribute("fachname").length != 0 && 0<=np<=15) {
+        getFachByName(fachSelect.getAttribute("fachname"), async (data) => {
+            let currentSemester = document.querySelector(".select-semester-selected").textContent;
+            if (currentSemester.includes("1.1")) {
+                currentSemester = 1;
+            } else if (currentSemester.includes("1.2")) {
+                currentSemester = 2;
+            } else if (currentSemester.includes("2.1")) {
+                currentSemester = 3;
+            } else if (currentSemester.includes("2.2")) {
+                currentSemester = 4;
+            }
+            const response = await fetch("/api/noten/addnote", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify(
+                    {
+                        userid: userID,
+                        fachid: data.id,
+                        notenpunkte: np,
+                        halbjahr: currentSemester,
+                        beschreibung: description.value
+                    }
+                ),
+            });
+            response.json().then((dataFin) => {
+                window.location.href = "/";
+            })
+        });
+    }
+});
 
 document.addEventListener('click', (event) => {
     if (!event.target.closest('.add-grade-fach-select')) {
@@ -172,6 +220,28 @@ let fetchDurchschnitt = async () => {
     } catch (error) {
         console.error(error.message);
     }
+}
+
+async function getFachByName(fachname, callback) {
+    let apiCall = async () => {
+        // Get database data
+        let response = await fetch("/api/getfachbyname", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                    fachname: fachname
+                }
+            ),
+        });
+
+        response.json().then((data) => callback(data));
+    }
+
+    apiCall();
 }
 
 let fetchHighestSubjects = async () => {
