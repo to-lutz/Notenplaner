@@ -15,6 +15,15 @@ router.post('/', function (req, res, next) {
 
     connection.connect();
 
+    let abiturrel = 0;
+
+    connection.query('SELECT * FROM notenplaner.faecher WHERE userid="' + req.body.userid + '"', (err, rows, fields) => {
+        if (err) throw err;
+        if (rows.length != 0) {
+            abiturrel = rows[0].abiturrelevant;
+        }
+    });
+
     connection.query('SELECT * FROM notenplaner.noten WHERE userid="' + req.body.userid + '" AND fachid="' + req.body.fachid + '" AND halbjahr=' + req.body.semester, function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
@@ -34,6 +43,7 @@ router.post('/', function (req, res, next) {
                 userid: id,
                 fachid: rows[0].fachid,
                 note: noten,
+                abiturrelevant: abiturrel,
                 date: new Date(),
             });
             connection.end();
