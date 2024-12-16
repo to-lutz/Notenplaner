@@ -134,12 +134,18 @@ async function fetchBlock1() {
 
             let block1Value = 0;
             results.forEach(data => {
-                if (data.status == "Found") {
+                if (data.status == "Found" && data.abiturrelevant) {
                     block1Value += data.note;
                 }
             });
 
             document.querySelector("#abitur-b1-points").innerHTML = block1Value.toFixed(0);
+            let line = document.querySelector("#abitur-b1-line");
+            let percent = (block1Value / 600) * 100;
+            percent = Math.max(0, Math.min(percent, 100)).toFixed(2);
+
+            line.style.width = percent + "%";
+            line.style.visibility = "visible";
         });
     };
 

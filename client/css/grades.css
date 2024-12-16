@@ -186,10 +186,17 @@ header {
     width: 25%;
 }
 
+.abitur-line-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 6px;
+}
+
 .abitur-line {
-    width: 110%;
-    height: 3px;
+    visibility: hidden;
+    height: 6px;
     background-color: #09794e;
+    border-radius: 6px;
 }
 
 /* Abitur Overview End /*
