@@ -8,7 +8,7 @@
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notenplaner | Noten</title>
-    <link rel="stylesheet" href="css/login.css" />
+    <link rel="stylesheet" href="css/grades.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,9 +20,23 @@
         <i class="fa-regular fa-paper-plane fa-2xl"></i>
     </div> -->
     <div class="wrapper">
-        <p>Kommt bald..</p>
-        <a href="/">Zurück zur Hauptseite</a>
+        <div class="header-wrapper">
+            <header>
+                <div class="header-left-side">
+                    <div class="icon" id="headericon">
+                        <i class="fa-regular fa-paper-plane fa-2xl"></i>
+                    </div>
+                </div>
+                <div class="header-right-side">
+                    <button class="pagebtn" id="settings-page-btn">Einstellungen</button>
+                    <button class="btn" id="sign-out">Ausloggen</button>
+                </div>
+                <i class="fa-solid fa-bars fa-2xl header-open-menu-btn" id="header-open-menu-btn"></i>
+            </header>
+        </div>
     </div>
+
+    <script src="javascript/grades.js" type="module"></script>
 </body>
 
 </html>
