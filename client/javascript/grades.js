@@ -26,6 +26,9 @@ if (sessionID == null || sessionID.length == 0) {
                     document.cookie = 'np_session_id=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
                     window.location.href = "/login";
                 }
+
+                // Fetch API Calls
+                fetchBlock1();
             });
         } catch (error) {
             console.error(error.message);
@@ -67,6 +70,75 @@ document.querySelector("#sign-out").addEventListener("click", (e) => {
     }
     apiCall();
 });
+
+let block1Value = 0;
+
+async function getFachByName(fachname, callback) {
+    let apiCall = async () => {
+        // Get database data
+        let response = await fetch("/api/getfachbyname", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                    fachname: fachname
+                }
+            ),
+        });
+
+        response.json().then((data) => callback(data));
+    }
+
+    apiCall();
+}
+
+async function fetchBlock1() {
+    let apiCall = async () => {
+        // Get database data
+        let response = await fetch("/api/getfaecher", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify(
+                {
+                    userid: userID,
+                }
+            ),
+        });
+
+        response.json().then(async (data) => {
+            let subjects = data.subjects;
+            let curSemester = 1;
+            for (let subject of subjects) {
+                let response = await fetch("/api/noten/abitur/getkursnote", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                    },
+                    body: JSON.stringify(
+                        {
+                            userid: userID,
+                            fachid: subject.id,
+                            semester: curSemester,
+                        }
+                    ),
+                });
+
+                response.json().then(data => {
+                    if (data.status != "Found") return;
+                    block1Value+=data.note;
+                    document.querySelector("#abitur-b1-points").innerHTML = block1Value.toFixed(0);
+                });
+            }
+        });
+    }
+
+    apiCall();
+}
 
 // Reponsive Navbar
 
