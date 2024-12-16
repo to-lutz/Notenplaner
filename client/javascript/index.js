@@ -247,7 +247,6 @@ async function getFachByName(fachname, callback) {
 }
 
 let fetchHighestSubjects = async () => {
-
     document.querySelectorAll(".top-grades-list-item").forEach((e) => {
         e.classList.remove("top-grades-fade-in");
         e.style.transition = "none";
@@ -279,50 +278,55 @@ let fetchHighestSubjects = async () => {
                 }
             ),
         });
-        response.json().then(async (data) => {
-            if (data.status === "Unknown") {
-                let elem1 = document.querySelector("#top-grade-item1");
-                elem1.textContent = "Keine Noten verfügbar";
-                elem1.classList.add("no-top-subjects");
-                elem1.style.opacity = "1";
-                document.querySelector(".top-grades-list").style.padding = "0";
-                return;
-            }
-            document.querySelector(".top-grades-list").style.paddingLeft = "40px";
-            for (let i = 0; i < Math.min(data.noten.length, 3); i++) {
-
-                let response = await fetch("/api/getfach", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
-                    },
-                    body: JSON.stringify(
-                        {
-                            userid: userID,
-                            fachid: data.noten[i].fachid
-                        }
-                    ),
-                });
-
-                response.json().then((data2) => {
-                    setTimeout(() => {
-                        let elem = document.querySelector("#top-grade-item" + (i + 1));
-                        elem.innerHTML = data2.name + ": " + data.noten[i].np + " NP";
-                        elem.style.color = "#" + data2.farbe;
-
-                        // Animation
-                        elem.style.transition = "opacity 1s ease-in-out";
-                        elem.style.opacity = "1";
-                        elem.classList.add("top-grades-fade-in");
-                        elem.classList.remove("no-top-subjects");
-                    }, i * (2000 / 3));
+        const data = await response.json();
+        
+        if (data.status === "Unknown") {
+            let elem1 = document.querySelector("#top-grade-item1");
+            elem1.textContent = "Keine Noten verfügbar";
+            elem1.classList.add("no-top-subjects");
+            elem1.style.opacity = "1";
+            document.querySelector(".top-grades-list").style.padding = "0";
+            return;
+        }
+        
+        document.querySelector(".top-grades-list").style.paddingLeft = "40px";
+        
+        let fachRequests = data.noten.slice(0, 3).map((notenItem, i) => {
+            return fetch("/api/getfach", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify({
+                    userid: userID,
+                    fachid: notenItem.fachid
                 })
-            }
-        })
+            })
+            .then(response => response.json())
+            .then(data2 => {
+                setTimeout(() => {
+                    let elem = document.querySelector("#top-grade-item" + (i + 1));
+                    elem.innerHTML = data2.name + ": " + notenItem.np + " NP";
+                    elem.style.color = "#" + data2.farbe;
+
+                    // Animation
+                    elem.style.transition = "opacity 1s ease-in-out";
+                    elem.style.opacity = "1";
+                    elem.classList.add("top-grades-fade-in");
+                    elem.classList.remove("no-top-subjects");
+                }, i * 500);  // Verzögerung von 500ms pro Fach
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+        });
+
+        await Promise.all(fachRequests);
+
     } catch (error) {
         console.error(error.message);
     }
-}
+};
 
 let fetchGrades = async () => {
     // Get database data
@@ -351,9 +355,8 @@ let fetchGrades = async () => {
             ),
         });
 
-        let list = document.querySelector(".new-grades-list");
-        list.innerHTML = "";
-        if (response.status == "403") {
+        const data = await response.json();
+        if (data.status == "403") {
             let elem = document.createElement("li");
             elem.classList.add("new-grades-list-item");
             elem.classList.add("no-new-grade");
@@ -363,43 +366,46 @@ let fetchGrades = async () => {
             return;
         }
 
-        response.json().then(async (data) => {
-            let noten = data.noten;
-            noten.sort((a, b) => new Date(a.added) - new Date(b.added));
-            noten.reverse();
+        let list = document.querySelector(".new-grades-list");
+        list.innerHTML = "";
+        let noten = data.noten;
+        noten.sort((a, b) => new Date(a.added) - new Date(b.added));
+        noten.reverse();
 
-            for (let i = 0; i < Math.min(noten.length, 6); i++) {
+        let gradeRequests = noten.slice(0, 6).map((notenItem, i) => {
+            let date = new Date(notenItem.added);
+
+            return fetch("/api/getfach", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+                },
+                body: JSON.stringify({
+                    userid: userID,
+                    fachid: notenItem.fach
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
                 let elem = document.createElement("li");
                 elem.classList.add("new-grades-list-item");
                 elem.id = "new-grade-item" + (i + 1);
 
-                let notenElem = noten[i];
-                let date = new Date(notenElem.added);
+                elem.textContent = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} | ${data.name}: ${notenItem.np} NP`;
+                elem.style.color = "#" + data.farbe;
+                list.appendChild(elem);
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+        });
 
-                let response = await fetch("/api/getfach", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
-                    },
-                    body: JSON.stringify(
-                        {
-                            userid: userID,
-                            fachid: noten[i].fach
-                        }
-                    ),
-                });
+        await Promise.all(gradeRequests);
 
-                response.json().then((data) => {
-                    elem.textContent = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear() + " | " + data.name + ": " + notenElem.np + " NP";
-                    elem.style.color = "#" + data.farbe;
-                    list.appendChild(elem);
-                });
-            }
-        })
     } catch (error) {
         console.error(error.message);
     }
-}
+};
 
 async function fetchSubjects() {
     let apiCall = async () => {
