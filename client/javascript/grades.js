@@ -112,10 +112,13 @@ async function fetchBlock1() {
 
         response.json().then(async (data) => {
             let subjects = data.subjects;
-            let curSemester = 1;
 
-            const fetchPromises = subjects.map(subject => {
-                return fetch("/api/noten/abitur/getkursnote", {
+            // Semester-Werte für 1 bis 4
+            const semesters = [1, 2, 3, 4];
+
+            // Hole alle Noten für alle Fächer und Semester in einem Aufruf
+            const fetchPromises = semesters.map(semester => {
+                return fetch("/api/noten/abitur/getkursnotebatch", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
@@ -123,27 +126,36 @@ async function fetchBlock1() {
                     body: JSON.stringify(
                         {
                             userid: userID,
-                            fachid: subject.id,
-                            semester: curSemester,
+                            semester: semester,
+                            fachIds: subjects.map(subject => subject.id) // Alle Fach-IDs für das Semester auf einmal senden
                         }
                     ),
                 }).then(response => response.json());
             });
 
-            const results = await Promise.all(fetchPromises);
+            // Hole alle Noten für alle Semester in einem Batch
+            const allResults = await Promise.all(fetchPromises);
 
             let block1Value = 0;
-            results.forEach(data => {
-                if (data.status == "Found" && data.abiturrelevant) {
-                    block1Value += data.note;
-                }
+
+            // Verarbeite die Ergebnisse der API-Aufrufe
+            allResults.forEach(semesterResults => {
+                semesterResults.forEach(data => {
+                    if (data.status == "Found" && data.abiturrelevant) {
+                        block1Value += data.note;
+                    }
+                });
             });
 
+            // Aktualisiere den Wert und die Anzeige
             document.querySelector("#abitur-b1-points").innerHTML = block1Value.toFixed(0);
+
+            // Berechne den Prozentwert
             let line = document.querySelector("#abitur-b1-line");
             let percent = (block1Value / 600) * 100;
             percent = Math.max(0, Math.min(percent, 100)).toFixed(2);
 
+            // Setze die Breite der Linie und zeige sie an
             line.style.width = percent + "%";
             line.style.visibility = "visible";
         });
