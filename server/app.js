@@ -44,6 +44,8 @@ var topsubjectsRouter = require('./routes/api/noten/topsubjects');
 var getNotenRouter = require('./routes/api/noten/getNotenAPI');
 var addNoteRouter = require('./routes/api/noten/addNoteAPI');
 
+var getKursNoteRouter = require('./routes/api/noten/abitur/getKursNote');
+
 var rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
@@ -94,5 +96,7 @@ app.use('/api/noten/durchschnitt', notendurchschnittRouter);
 app.use('/api/noten/topsubjects', topsubjectsRouter);
 app.use('/api/noten/getnoten', getNotenRouter);
 app.use('/api/noten/addnote', addNoteRouter);
+
+app.use('/api/noten/abitur/getkursnote', getKursNoteRouter);
 
 module.exports = app;
