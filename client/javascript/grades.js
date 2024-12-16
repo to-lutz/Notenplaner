@@ -113,8 +113,9 @@ async function fetchBlock1() {
         response.json().then(async (data) => {
             let subjects = data.subjects;
             let curSemester = 1;
-            for (let subject of subjects) {
-                let response = await fetch("/api/noten/abitur/getkursnote", {
+
+            const fetchPromises = subjects.map(subject => {
+                return fetch("/api/noten/abitur/getkursnote", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
@@ -126,16 +127,21 @@ async function fetchBlock1() {
                             semester: curSemester,
                         }
                     ),
-                });
+                }).then(response => response.json());
+            });
 
-                response.json().then(data => {
-                    if (data.status != "Found") return;
-                    block1Value+=data.note;
-                    document.querySelector("#abitur-b1-points").innerHTML = block1Value.toFixed(0);
-                });
-            }
+            const results = await Promise.all(fetchPromises);
+
+            let block1Value = 0;
+            results.forEach(data => {
+                if (data.status == "Found") {
+                    block1Value += data.note;
+                }
+            });
+
+            document.querySelector("#abitur-b1-points").innerHTML = block1Value.toFixed(0);
         });
-    }
+    };
 
     apiCall();
 }
