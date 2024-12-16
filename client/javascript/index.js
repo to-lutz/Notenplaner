@@ -328,10 +328,90 @@ let fetchHighestSubjects = async () => {
     }
 };
 
+// let fetchGrades = async () => {
+//     // Get database data
+//     const url = "/api/noten/getnoten";
+//     let currentSemester = document.querySelector(".select-semester-selected").textContent;
+//     if (currentSemester.includes("1.1")) {
+//         currentSemester = 1;
+//     } else if (currentSemester.includes("1.2")) {
+//         currentSemester = 2;
+//     } else if (currentSemester.includes("2.1")) {
+//         currentSemester = 3;
+//     } else if (currentSemester.includes("2.2")) {
+//         currentSemester = 4;
+//     }
+//     try {
+//         const response = await fetch(url, {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+//             },
+//             body: JSON.stringify(
+//                 {
+//                     userid: userID,
+//                     semester: currentSemester
+//                 }
+//             ),
+//         });
+
+//         const data = await response.json();
+//         if (data.status == "403") {
+//             let elem = document.createElement("li");
+//             elem.classList.add("new-grades-list-item");
+//             elem.classList.add("no-new-grade");
+//             elem.id = "new-grade-item1";
+//             elem.textContent = "Keine neuen Noten";
+//             list.appendChild(elem);
+//             return;
+//         }
+
+//         let list = document.querySelector(".new-grades-list");
+//         list.innerHTML = "";
+//         let noten = data.noten;
+//         noten.sort((a, b) => new Date(a.added) - new Date(b.added));
+//         noten.reverse();
+
+//         let gradeRequests = noten.slice(0, 6).map((notenItem, i) => {
+//             let date = new Date(notenItem.added);
+
+//             return fetch("/api/getfach", {
+//                 method: "POST",
+//                 headers: {
+//                     "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+//                 },
+//                 body: JSON.stringify({
+//                     userid: userID,
+//                     fachid: notenItem.fach
+//                 })
+//             })
+//             .then(response => response.json())
+//             .then(data => {
+//                 let elem = document.createElement("li");
+//                 elem.classList.add("new-grades-list-item");
+//                 elem.id = "new-grade-item" + (i + 1);
+
+//                 elem.textContent = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} | ${data.name}: ${notenItem.np} NP`;
+//                 elem.style.color = "#" + data.farbe;
+//                 list.appendChild(elem);
+//             })
+//             .catch(error => {
+//                 console.error(error.message);
+//             });
+//         });
+
+//         await Promise.all(gradeRequests);
+
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// };
+
 let fetchGrades = async () => {
     // Get database data
     const url = "/api/noten/getnoten";
     let currentSemester = document.querySelector(".select-semester-selected").textContent;
+    
     if (currentSemester.includes("1.1")) {
         currentSemester = 1;
     } else if (currentSemester.includes("1.2")) {
@@ -341,18 +421,17 @@ let fetchGrades = async () => {
     } else if (currentSemester.includes("2.2")) {
         currentSemester = 4;
     }
+    
     try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
             },
-            body: JSON.stringify(
-                {
-                    userid: userID,
-                    semester: currentSemester
-                }
-            ),
+            body: JSON.stringify({
+                userid: userID,
+                semester: currentSemester
+            }),
         });
 
         const data = await response.json();
@@ -372,35 +451,35 @@ let fetchGrades = async () => {
         noten.sort((a, b) => new Date(a.added) - new Date(b.added));
         noten.reverse();
 
-        let gradeRequests = noten.slice(0, 6).map((notenItem, i) => {
-            let date = new Date(notenItem.added);
+        let fachIds = noten.slice(0, 6).map(notenItem => notenItem.fach);
 
-            return fetch("/api/getfach", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json", "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
-                },
-                body: JSON.stringify({
-                    userid: userID,
-                    fachid: notenItem.fach
-                })
+        const batchResponse = await fetch("/api/getfachbatch", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-api-key": "f3EY1v55LdyINsVMijm626bDRhAW"
+            },
+            body: JSON.stringify({
+                userid: userID,
+                fachIds: fachIds
             })
-            .then(response => response.json())
-            .then(data => {
+        });
+
+        const fachData = await batchResponse.json();
+
+        noten.slice(0, 6).forEach((notenItem, i) => {
+            const date = new Date(notenItem.added);
+            const fach = fachData.find(f => f.id === notenItem.fach);
+
+            if (fach) {
                 let elem = document.createElement("li");
                 elem.classList.add("new-grades-list-item");
                 elem.id = "new-grade-item" + (i + 1);
-
-                elem.textContent = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} | ${data.name}: ${notenItem.np} NP`;
-                elem.style.color = "#" + data.farbe;
+                elem.textContent = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()} | ${fach.name}: ${notenItem.np} NP`;
+                elem.style.color = "#" + fach.farbe;
                 list.appendChild(elem);
-            })
-            .catch(error => {
-                console.error(error.message);
-            });
+            }
         });
-
-        await Promise.all(gradeRequests);
 
     } catch (error) {
         console.error(error.message);
