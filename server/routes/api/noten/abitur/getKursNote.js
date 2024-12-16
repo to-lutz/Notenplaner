@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
 
     let abiturrel = 0;
 
-    connection.query('SELECT * FROM notenplaner.faecher WHERE userid="' + req.body.userid + '"', (err, rows, fields) => {
+    connection.query('SELECT * FROM notenplaner.faecher WHERE userid="' + req.body.userid + '" AND id="' + req.body.fachid + '"', (err, rows, fields) => {
         if (err) throw err;
         if (rows.length != 0) {
             abiturrel = rows[0].abiturrelevant;
