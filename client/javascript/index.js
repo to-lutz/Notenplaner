@@ -119,7 +119,8 @@ document.querySelector(".grades-add-grade-btn").addEventListener("click", () => 
 
 document.querySelector("#save-add-grade-btn").addEventListener("click", (e) => {
     let fachSelect = selectedNote;
-    let description = document.querySelector("#description");
+    let description = document.querySelector("#add-grade-description");
+    let weight = document.querySelector("#add-grade-gewichtung").value;
     let np = document.querySelector("#add_grade_notenpunkte").value;
     if (fachSelect.getAttribute("fachname").length != 0 && 0<=np<=15) {
         getFachByName(fachSelect.getAttribute("fachname"), async (data) => {
@@ -144,7 +145,8 @@ document.querySelector("#save-add-grade-btn").addEventListener("click", (e) => {
                         fachid: data.id,
                         notenpunkte: np,
                         halbjahr: currentSemester,
-                        beschreibung: description.value
+                        beschreibung: description.value,
+                        gewichtung: weight
                     }
                 ),
             });
