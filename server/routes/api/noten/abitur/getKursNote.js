@@ -24,7 +24,7 @@ router.post('/', function (req, res, next) {
         }
     });
 
-    connection.query('SELECT * FROM notenplaner.noten WHERE userid="' + req.body.userid + '" AND fachid="' + req.body.fachid + '" AND halbjahr=' + req.body.semester, function (err, rows, fields) {
+    connection.query('SELECT * FROM notenplaner.noten WHERE userid="' + req.body.userid + '" AND fachid="' + req.body.fachid + '" AND abiturrelevant=1 AND halbjahr=' + req.body.semester, function (err, rows, fields) {
         if (err) throw err;
         if (rows.length != 0) {
             let id = rows[0].userid;
