@@ -20,18 +20,20 @@ router.post('/', function (req, res, next) {
         if (rows.length != 0) {
             let id = rows[0].userid;
 
-            // TODO Durchschnitt with oral and written grades
-
             let total = 0;
-            let amt = rows.length;
-            for (row in rows) {
-                total+=rows[row].notenpunkte;
+            let gewichtungSum = 0;
+
+            for (let row of rows) {
+                total+=(row.notenpunkte * row.gewichtung);
+                gewichtungSum+=row.gewichtung;
             }
+            
+            total = total / gewichtungSum;
 
             res.status(200).json({
                 status: 'Found',
                 userid: id,
-                average: total/amt,
+                average: total,
                 date: new Date(),
             });
             connection.end();
