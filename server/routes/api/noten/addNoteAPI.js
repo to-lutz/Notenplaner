@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
     connection.connect();
 
 
-    connection.query('INSERT INTO notenplaner.noten(`userid`, `fachid`, `notenpunkte`, `halbjahr`, `beschreibung`) VALUES (' + req.body.userid + ', ' + req.body.fachid + ', ' + req.body.notenpunkte + ', ' + req.body.halbjahr + ', "' + req.body.beschreibung + '")', function (err, rows, fields) {
+    connection.query('INSERT INTO notenplaner.noten(`userid`, `fachid`, `notenpunkte`, `halbjahr`, `beschreibung`, `gewichtung`) VALUES (' + req.body.userid + ', ' + req.body.fachid + ', ' + req.body.notenpunkte + ', ' + req.body.halbjahr + ', "' + req.body.beschreibung + '", "' + req.body.gewichtung + '")', function (err, rows, fields) {
         if (err) {
             throw err;
         }
