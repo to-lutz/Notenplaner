@@ -25,7 +25,8 @@ router.post('/', function (req, res, next) {
                     fach: row.fachid,
                     np: row.notenpunkte,
                     added: row.timestamp,
-                    description: row.beschreibung
+                    description: row.beschreibung,
+                    gewichtung: row.gewichtung,
                 })
             }
 
