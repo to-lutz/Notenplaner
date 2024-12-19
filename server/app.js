@@ -47,6 +47,7 @@ var addNoteRouter = require('./routes/api/noten/addNoteAPI');
 
 var getKursNoteRouter = require('./routes/api/noten/abitur/getKursNote');
 var getKursNoteBatchRouter = require('./routes/api/noten/abitur/getKursNoteBatch');
+var getDurchschnittFromPointsRouter = require('./routes/api/noten/abitur/durchschnittFromPoints');
 
 var rateLimit = require('express-rate-limit');
 
@@ -102,5 +103,6 @@ app.use('/api/noten/addnote', addNoteRouter);
 
 app.use('/api/noten/abitur/getkursnote', getKursNoteRouter);
 app.use('/api/noten/abitur/getkursnotebatch', getKursNoteBatchRouter);
+app.use('/api/noten/abitur/durchschnittfrompoints', getDurchschnittFromPointsRouter);
 
 module.exports = app;
