@@ -536,6 +536,7 @@ items.addEventListener('click', (event) => {
     if (event.target.tagName === 'DIV') {
         selected.innerHTML = event.target.textContent + ' <span class="arrow arrow-select-closed">></span>';
         items.style.display = 'none';
+        document.cookie = "semester=" + event.target.textContent + "; path=/";
         fetchDurchschnitt();
         fetchHighestSubjects();
         fetchGrades();
@@ -585,3 +586,18 @@ document.querySelector("#header-open-menu-btn").addEventListener("click", () => 
         clickmenu.classList.add("fa-bars");
     }
 });
+
+// Check if cookie semester is set and then set the selected semester
+let semester = getCookie("semester");
+if (semester != null && semester.length != 0) {
+    selected.innerHTML = semester + ' <span class="arrow arrow-select-closed">></span>';
+    if (semester.includes("1.1")) {
+        currentSemester = 1;
+    } else if (semester.includes("1.2")) {
+        currentSemester = 2;
+    } else if (semester.includes("2.1")) {
+        currentSemester = 3;
+    } else if (semester.includes("2.2")) {
+        currentSemester = 4;
+    }
+}
