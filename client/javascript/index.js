@@ -306,7 +306,7 @@ let fetchHighestSubjects = async () => {
             .then(data2 => {
                 setTimeout(() => {
                     let elem = document.querySelector("#top-grade-item" + (i + 1));
-                    elem.innerHTML = data2.name + ": " + notenItem.np.toFixed(2) + " NP";
+                    elem.innerHTML = data2.name + ": " + parseFloat(notenItem.np.toFixed(2)) + " NP";
                     elem.style.color = "#" + data2.farbe;
 
                     // Animation
