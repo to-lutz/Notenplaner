@@ -19,7 +19,7 @@ router.post('/', function (req, res, next) {
 
     // SQL-Abfrage, um alle Fächer und Noten auf einmal zu holen
     const queryFaecher = 'SELECT * FROM notenplaner.faecher WHERE userid = ? AND id IN (?)';
-    const queryNoten = 'SELECT * FROM notenplaner.noten WHERE userid = ? AND fachid IN (?) AND halbjahr = ?';
+    const queryNoten = 'SELECT * FROM notenplaner.noten WHERE userid = ?  AND abiturrelevant=1 AND fachid IN (?) AND halbjahr = ?';
 
     // Hole die Fächer (einschließlich der abiturrelevanten Info)
     connection.query(queryFaecher, [userid, fachIds], (err, faecherRows) => {
